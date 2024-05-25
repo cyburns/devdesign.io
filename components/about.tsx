@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import SectionHeading from "./section-heading";
-import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
 
 export default function About() {
@@ -11,14 +9,19 @@ export default function About() {
   return (
     <section
       ref={ref}
-      className="mb-28 max-w-[45rem] leading-8 sm:mb-40 scroll-mt-28 flex flex-row justify-between"
+      className="max-w-[50rem] leading-8 scroll-mt-28 flex flex-row justify-between w-full"
       id="about"
     >
-      <SectionHeading>
-        Fast, reliable, and affordable development services
-      </SectionHeading>
-      <div>
-        <p className="mb-3">
+      <div className="max-w-[15rem]">
+        <h2 className="text-3xl font-medium capitalize mb-8">
+          Fast, reliable, and affordable development services
+        </h2>
+        <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 flex flex-row">
+          About
+        </button>
+      </div>
+      <div className="max-w-sm">
+        <p className="text-[#a3a3a7]">
           DevDesign replaces unreliable freelancers and expensive agencies for
           one flat fee, with product delivered so fast that it will blow your
           min

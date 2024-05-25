@@ -105,3 +105,27 @@ export const skillsData = [
   "Django",
   "Framer Motion",
 ] as const;
+
+export const testimonials = [
+  {
+    name: "Wireframing",
+  },
+  {
+    name: "Design",
+  },
+  {
+    name: "Architectural Planning",
+  },
+  {
+    name: "Containerization",
+  },
+  {
+    name: "Front-end Development",
+  },
+  {
+    name: "API Integration",
+  },
+  {
+    name: "Database Design",
+  },
+];

@@ -1,8 +1,10 @@
 import About from "@/components/about";
 import Experience from "@/components/experience";
+import InfiniteWords from "@/components/infinite";
 import Intro from "@/components/intro";
 import Projects from "@/components/projects";
 import SectionDivider from "@/components/section-divider";
+import Services from "@/components/services";
 import Skills from "@/components/skills";
 
 export default function Home() {
@@ -11,7 +13,8 @@ export default function Home() {
       <Intro />
       <SectionDivider />
       <About />
-      <Projects />
+      <InfiniteWords />
+      <Services />
       <Skills />
       <Experience />
     </main>
