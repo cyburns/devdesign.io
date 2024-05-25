@@ -22,10 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="!scroll-smooth">
       <body
-        className={`${mont.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-black dark:text-white dark:text-opacity-90`}
+        className={`${mont.className} bg-white text-gray-950 relative pt-28 sm:pt-36 dark:bg-black dark:text-white dark:text-opacity-90`}
       >
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
+
             <Header />
             {children}
             <Footer />
