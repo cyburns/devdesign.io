@@ -121,7 +121,7 @@ const PriceCard = ({ card, index }: any) => {
               strokeWidth="1.5"
               stroke="currentColor"
               aria-hidden="true"
-              className="h-6 w-5 flex-none text-blue-600"
+              className="h-6 w-5 flex-none text-green-500 dark:text-green-400"
             >
               <path
                 strokeLinecap="round"
