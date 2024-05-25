@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  --line-color: #e5e7eb;
+}
+
+html.dark {
+  --line-color: rgba(255, 255, 255, 0.2);
+}
+
+.borderBlack {
+  @apply border border-black/10;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(to right, #f37a1d, #d12873, #932cba);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-border {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  border: 3px dotted;
+  border-image: linear-gradient(to right, #f37a1d, #d12873, #932cba) 1;
+  border-radius: 0.5rem /* 8px */;
+}
