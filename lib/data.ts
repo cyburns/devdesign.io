@@ -129,3 +129,34 @@ export const testimonials = [
     name: "Database Design",
   },
 ];
+
+export const serviceCardsData = [
+  {
+    title: "Development",
+    description:
+      "Crafting responsive and dynamic websites or web applications, using a combination of front-end and back-end technologies, to meet various online business needs.",
+    icon: React.createElement(FaReact),
+    num: "01",
+  },
+  {
+    title: "Design",
+    description:
+      "Creating UI mockups with foundational elements to grasp the business requirements. High-fidelity prototypes are produced, featuring rich detail and mock data.",
+    icon: React.createElement(CgWorkAlt),
+    num: "02",
+  },
+  {
+    title: "Consulting",
+    description:
+      "I provide consulting services for web development, DevOps, system design and prototyping.",
+    icon: React.createElement(CgWorkAlt),
+    num: "03",
+  },
+  {
+    title: "DevOps",
+    description:
+      " Implementing a seamless pipeline for code integration and deployment, enabling faster release cycles and immediate feedback along with disaster recovery.",
+    icon: React.createElement(LuGraduationCap),
+    num: "04",
+  },
+] as const;

@@ -29,3 +29,18 @@ html.dark {
   border-image: linear-gradient(to right, #f37a1d, #d12873, #932cba) 1;
   border-radius: 0.5rem /* 8px */;
 }
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 500px;
+  min-width: 0;
+}
+
+.gradient-background {
+  background: linear-gradient(to right, #f37a1d, #d12873, #932cba);
+}
