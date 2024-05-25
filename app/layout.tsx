@@ -10,8 +10,8 @@ import { Toaster } from "react-hot-toast";
 const mont = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Ricardo | Personal Portfolio",
-  description: "Ricardo is a full-stack developer with 8 years of experience.",
+  title: "BLUR",
+  description: "Bring your ideas to life with BLUR.",
 };
 
 export default function RootLayout({
@@ -26,7 +26,6 @@ export default function RootLayout({
       >
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
-
             <Header />
             {children}
             <Footer />

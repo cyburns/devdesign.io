@@ -3,12 +3,10 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
-import { useActiveSectionContext } from "@/context/active-section-context";
 import { Spotlight } from "./ui/Spotlight";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
-  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
     <div className="h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-8rem]">
@@ -22,7 +20,6 @@ export default function Intro() {
         id="home"
         className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem] flex justify-center flex-col items-center px-4 sm:px-0"
       >
-        {/* Radial gradient for the container to give a faded look */}
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_25%,black)]" />
         <h1 className="mb-8 text-[5rem] font-medium !leading-[1] ">
           <span className="font-semibold uppercase">
