@@ -4,9 +4,12 @@ import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
 import { Spotlight } from "./ui/Spotlight";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
+  const { activeSection, setActiveSection, setTimeOfLastClick } =
+    useActiveSectionContext();
 
   return (
     <div className="h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-8rem]">
@@ -33,7 +36,13 @@ export default function Intro() {
         </h2>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium ">
-          <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[2.5px] hover:scale-105 transition">
+          <button
+            onClick={() => {
+              setActiveSection("Pricing");
+              setTimeOfLastClick(Date.now());
+            }}
+            className="relative inline-flex h-12 overflow-hidden rounded-full p-[2.5px] hover:scale-105 transition"
+          >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#f37a1d_0%,#932cba_50%,#f37a1d_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-black px-10 py-1 text-lg font-medium text-black dark:text-white backdrop-blur-3xl">
               See Plans

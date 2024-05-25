@@ -5,13 +5,14 @@ import React from "react";
 
 const priceCardData = [
   {
-    title: "Standard",
+    title: "Mini",
     price: "$500",
     features: [
-      "20 hours of work",
+      "8 hours of work",
       "Available 10AM-4PM, M-F",
       "All AI features",
-      "Use your own OpenAI key",
+      "One request at a time",
+      "Full access to source code",
     ],
     buyLink: "https://buy.stripe.com/test_aEUaF5fOn4ye8BG289",
   },
@@ -19,10 +20,10 @@ const priceCardData = [
     title: "Extended",
     price: "$1,000",
     features: [
-      "40 hours of work",
+      "20 hours of work",
       "24/7 on-call support",
-      "All AI features",
-      "Use your own OpenAI key",
+      "As many requests as you’d like",
+      "Full access to source co",
     ],
     buyLink: "https://buy.stripe.com/test_4gw00rgSr9SybNS8ww",
   },
