@@ -35,7 +35,7 @@ export default function Carousel() {
           {serviceCardsData.map((item, index) => (
             <div
               key={index}
-              className="embla__slide bg-[#161616]  p-7 rounded-lg mx-5 "
+              className="embla__slide bg-[#EFEFEF] dark:bg-[#161616]  p-7 rounded-lg mx-5 "
             >
               <div className="flex flex-row min-h-[10rem]">
                 <div className="gradient-background min-w-16 h-16 rounded-full flex justify-center items-center">

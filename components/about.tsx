@@ -16,9 +16,6 @@ export default function About() {
         <h2 className="text-3xl font-medium capitalize mb-8">
           Fast, reliable, and affordable development services
         </h2>
-        <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 flex flex-row">
-          About
-        </button>
       </div>
       <div className="max-w-sm">
         <p className="text-[#a3a3a7]">

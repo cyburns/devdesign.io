@@ -2,12 +2,9 @@
 
 import React from "react";
 import { useSectionInView } from "@/lib/hooks";
-import useEmblaCarousel from "embla-carousel-react";
-import { skillsData } from "@/lib/data";
 
 export default function Services() {
   const { ref } = useSectionInView("About");
-  const [emblaRef] = useEmblaCarousel();
 
   return (
     <section
