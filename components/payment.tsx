@@ -45,13 +45,19 @@ export default function Payment() {
 
 const PriceCard = ({ card, index }: any) => {
   const isExtended = index === 1;
+
   const cardStyles = isExtended
     ? "ring-2 ring-blue-600"
     : "ring-1 ring-gray-200";
-  const titleStyles = isExtended ? "text-blue-600" : "text-gray-900";
+
+  const titleStyles = isExtended
+    ? "text-blue-600"
+    : "text-black dark:text-white";
+
   const buyButtonStyles = isExtended
     ? "bg-blue-600 text-white shadow-sm hover:bg-blue-500"
     : "text-blue-600 ring-1 ring-inset ring-blue-200 hover:ring-blue-300";
+
   const mostPopularBadge = isExtended ? (
     <p className="rounded-full bg-blue-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-blue-600">
       Most popular
@@ -59,7 +65,7 @@ const PriceCard = ({ card, index }: any) => {
   ) : null;
 
   return (
-    <div className={`rounded-3xl p-8 xl:p-10 ${cardStyles}`}>
+    <div className={`rounded-3xl p-8 xl:p-10 ${cardStyles} `}>
       <div className="flex items-center justify-between gap-x-4">
         <h3
           id={`tier-${card.title.toLowerCase()}`}
@@ -69,12 +75,12 @@ const PriceCard = ({ card, index }: any) => {
         </h3>
         {mostPopularBadge}
       </div>
-      <p className="mt-4 text-base leading-6 text-gray-600">
+      <p className="mt-4 text-base leading-6 text-black dark:text-white">
         {card.features[0]}
       </p>
       <div className="flex justify-center items-center">
         <p className="mt-6 flex items-baseline gap-x-1 text-center">
-          <span className="text-5xl font-bold tracking-tight text-gray-900 text-center">
+          <span className="text-5xl font-bold tracking-tight  text-center text-black dark:text-white">
             {card.price}
           </span>
         </p>
@@ -93,7 +99,10 @@ const PriceCard = ({ card, index }: any) => {
         className="mt-8 space-y-3 text-sm leading-6 text-gray-600 xl:mt-10"
       >
         {card.features.slice(1).map((feature: any, idx: number) => (
-          <li key={idx} className="flex gap-x-3 text-base">
+          <li
+            key={idx}
+            className="flex gap-x-3 text-base text-black dark:text-white"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
