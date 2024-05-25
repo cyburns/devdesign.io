@@ -21,7 +21,7 @@ export const InfiniteCards = ({
 
   useEffect(() => {
     addAnimation();
-  }, []);
+  });
 
   const [start, setStart] = useState(false);
 

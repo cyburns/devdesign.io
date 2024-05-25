@@ -11,10 +11,13 @@ import {
 } from "@mui/icons-material";
 
 const serviceIcons = [
-  <IntegrationInstructions sx={{ fontSize: "3rem", color: "#fff" }} />,
-  <Assistant sx={{ fontSize: "3rem", color: "#fff" }} />,
-  <AccountBox sx={{ fontSize: "3rem", color: "#fff" }} />,
-  <Extension sx={{ fontSize: "3rem", color: "#fff" }} />,
+  <IntegrationInstructions
+    sx={{ fontSize: "3rem", color: "#fff" }}
+    key="icon1"
+  />,
+  <Assistant sx={{ fontSize: "3rem", color: "#fff" }} key="icon2" />,
+  <AccountBox sx={{ fontSize: "3rem", color: "#fff" }} key="icon3" />,
+  <Extension sx={{ fontSize: "3rem", color: "#fff" }} key="icon4" />,
 ];
 
 export default function Carousel() {
@@ -29,17 +32,19 @@ export default function Carousel() {
   }, [emblaApi]);
 
   return (
-    <div className=" w-screen mb-56">
+    <div className="w-screen mb-56">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container ml-[30%] mr-[30%]">
           {serviceCardsData.map((item, index) => (
             <div
               key={index}
-              className="embla__slide bg-[#EFEFEF] dark:bg-[#161616]  p-7 rounded-lg mx-5 "
+              className="embla__slide bg-[#EFEFEF] dark:bg-[#161616] p-7 rounded-lg mx-5"
             >
               <div className="flex flex-row min-h-[10rem]">
                 <div className="gradient-background min-w-16 h-16 rounded-full flex justify-center items-center">
-                  <span className="px-2">{serviceIcons[index]}</span>
+                  <span key={`icon-${index}`} className="px-2">
+                    {serviceIcons[index]}
+                  </span>
                 </div>
 
                 <div className="ml-10">
