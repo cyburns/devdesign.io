@@ -1,3 +1,6 @@
+"use client";
+
+import { useSectionInView } from "@/lib/hooks";
 import React from "react";
 
 const priceCardData = [
@@ -26,8 +29,14 @@ const priceCardData = [
 ];
 
 export default function Payment() {
+  const { ref } = useSectionInView("Pricing");
+
   return (
-    <section className="flex items-center justify-center pb-10 mb-32">
+    <section
+      ref={ref}
+      id="pricing"
+      className="flex items-center justify-center pb-10 mb-32"
+    >
       <div
         className="p-4 sm:px-10 flex flex-col justify-center items-center text-base h-100vh mx-auto"
         id="pricing"

@@ -2,7 +2,7 @@
 
 import React, { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { skillsData, serviceCardsData } from "@/lib/data";
+import { serviceCardsData } from "@/lib/data";
 import {
   IntegrationInstructions,
   Assistant,

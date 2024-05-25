@@ -1,9 +1,18 @@
+"use client";
+
 import React from "react";
 import Accordion from "./accordion";
+import { useSectionInView } from "@/lib/hooks";
 
 const Works = () => {
+  const { ref } = useSectionInView("About");
+
   return (
-    <div className="p-4 bg-white dark:bg-black rounded-lg mb-32 ">
+    <div
+      ref={ref}
+      id="works"
+      className="p-4 bg-white dark:bg-black rounded-lg mb-32 "
+    >
       <h2 className="font-medium mb-8 text-[5rem] uppercase">selected works</h2>
 
       <div className="max-w-[50rem]">
