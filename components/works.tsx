@@ -3,7 +3,7 @@ import Accordion from "./accordion";
 
 const Works = () => {
   return (
-    <div className="p-4 bg-white dark:bg-black rounded-lg mb-56 ">
+    <div className="p-4 bg-white dark:bg-black rounded-lg mb-32 ">
       <h2 className="font-medium mb-8 text-[5rem] uppercase">selected works</h2>
 
       <div className="max-w-[50rem]">
