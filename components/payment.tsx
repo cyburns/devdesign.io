@@ -46,30 +46,30 @@ export default function Payment() {
 const PriceCard = ({ card, index }: any) => {
   const isExtended = index === 1;
 
-  const cardStyles = isExtended
-    ? "ring-2 ring-blue-600"
-    : "ring-1 ring-gray-200";
+  const cardStyles = isExtended ? "ring-2 ring-blue-600" : null;
 
   const titleStyles = isExtended
-    ? "text-blue-600"
+    ? "hero-gradient-text"
     : "text-black dark:text-white";
 
   const buyButtonStyles = isExtended
-    ? "bg-blue-600 text-white shadow-sm hover:bg-blue-500"
-    : "text-blue-600 ring-1 ring-inset ring-blue-200 hover:ring-blue-300";
+    ? "bg-blue-600 text-white shadow-sm transition hover:bg-blue-500"
+    : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 transition";
 
   const mostPopularBadge = isExtended ? (
-    <p className="rounded-full bg-blue-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-blue-600">
+    <p className="rounded-full gradient-background px-2.5 py-1 text-sm font-semibold leading-5 text-white">
       Most popular
     </p>
   ) : null;
 
   return (
-    <div className={`rounded-3xl p-8 xl:p-10 ${cardStyles} `}>
+    <div
+      className={`rounded-3xl p-8 xl:p-10 ${cardStyles} bg-[#EFEFEF] dark:bg-[#161616]`}
+    >
       <div className="flex items-center justify-between gap-x-4">
         <h3
           id={`tier-${card.title.toLowerCase()}`}
-          className={`${titleStyles} text-2xl font-semibold leading-8`}
+          className={`${titleStyles} text-4xl font-semibold leading-8`}
         >
           {card.title}
         </h3>

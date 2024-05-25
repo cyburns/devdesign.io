@@ -9,17 +9,12 @@ export default function Services() {
   return (
     <section
       ref={ref}
-      className="max-w-[50rem] leading-8 scroll-mt-28  w-full "
+      className="max-w-[50rem] leading-8 scroll-mt-28  w-full mb-10"
       id="about"
     >
-      <div className="flex flex-row justify-between mb-10">
-        <div className="max-w-[15rem] ">
-          <h2 className="font-medium mb-8 text-[5rem] uppercase">Services</h2>
-        </div>
-        <div className="max-w-sm">
-          <p className="text-[#a3a3a7]"></p>
-        </div>
-      </div>
+      <h2 className="font-medium mb-8 text-[5rem] uppercase text-center">
+        Services
+      </h2>
     </section>
   );
 }

@@ -35,12 +35,12 @@ export default function Intro() {
           prototyping, system design, DevOps, and development expertise.
         </h2>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium">
-          <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[2.5px] focus:outline-none focus:ring-2 focus:ring-[#f37a1d]focus:ring-offset-2 focus:ring-offset-[#f37a1d">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium ">
+          <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[2.5px] hover:scale-105 transition">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#f37a1d_0%,#932cba_50%,#f37a1d_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-black px-3 py-1 text-lg font-medium text-black dark:text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-black px-10 py-1 text-lg font-medium text-black dark:text-white backdrop-blur-3xl">
               See Plans
-              <BsArrowRight className="ml-2 hover:translate-x-1 transition" />
+              <BsArrowRight className="ml-4" />
             </span>
           </button>
         </div>
