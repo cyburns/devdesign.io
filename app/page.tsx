@@ -3,6 +3,7 @@ import Carousel from "@/components/carousel";
 import InfiniteWords from "@/components/infinite";
 import Intro from "@/components/intro";
 import Payment from "@/components/payment";
+import { Reviews } from "@/components/reviews";
 import SectionDivider from "@/components/section-divider";
 import Services from "@/components/services";
 import Works from "@/components/works";
@@ -18,6 +19,7 @@ export default function Home() {
       <Carousel />
       <Works />
       <Payment />
+      <Reviews />
     </main>
   );
 }

@@ -26,7 +26,7 @@ html.dark {
   background-clip: text;
   color: transparent;
   border: 3px dotted;
-  border-image: linear-gradient(to right, #f37a1d, #d12873, #932cba, #3045f4) 1;
+  border-image: linear-gradient(to right, #f37a1d, #d12873, #932cba) 1;
   border-radius: 0.5rem /* 8px */;
 }
 
@@ -51,4 +51,20 @@ html.dark {
 
 .gradient-background {
   background: linear-gradient(to right, #f37a1d, #d12873, #932cba);
+}
+
+.gradient {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #f37a1d, #d12873, #932cba);
+  padding: 3px;
+  margin-left: 1rem;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: white;
 }

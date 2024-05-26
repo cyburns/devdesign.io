@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+
+import React, { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 let interval: any;
 
@@ -58,7 +59,7 @@ export const FlipWords = ({
           y: -40,
           x: 40,
           filter: "blur(8px)",
-          scale: 1.5,
+          scale: 2,
           position: "absolute",
         }}
         className={cn(

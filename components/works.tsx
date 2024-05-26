@@ -11,7 +11,7 @@ const Works = () => {
     <div
       ref={ref}
       id="works"
-      className="p-4 bg-white dark:bg-black rounded-lg mb-32 "
+      className="p-4 bg-white dark:bg-black rounded-lg mb-32 sm:mb-48"
     >
       <h2 className="font-medium mb-8 text-[3rem] sm:text-[5rem] uppercase leading-[1] text-center">
         selected works
