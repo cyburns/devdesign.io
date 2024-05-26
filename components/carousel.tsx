@@ -34,11 +34,11 @@ export default function Carousel() {
   return (
     <div className="w-screen mb-56">
       <div className="embla" ref={emblaRef}>
-        <div className="embla__container ml-[30%] mr-[30%]">
+        <div className="embla__container ml-0 sm:ml-[30%] mr-0 sm:mr-[30%]">
           {serviceCardsData.map((item, index) => (
             <div
               key={index}
-              className="embla__slide bg-[#EFEFEF] dark:bg-[#161616] p-7 rounded-lg mx-5"
+              className="embla__slide bg-[#EFEFEF] dark:bg-[#161616] p-5 sm:p-7 rounded-lg mx-5"
             >
               <div className="flex flex-row min-h-[10rem]">
                 <div className="gradient-background min-w-16 h-16 rounded-full flex justify-center items-center">
@@ -53,8 +53,10 @@ export default function Carousel() {
               </div>
 
               <div className="flex flex-row justify-between">
-                <h1 className="text-3xl font-bold mt-5">{item.title}</h1>
-                <h2 className="text-3xl font-bold mt-5 text-[#a3a3a7]">
+                <h1 className="text-2xl sm:text-3xl font-bold mt-5">
+                  {item.title}
+                </h1>
+                <h2 className="text-2xl sm:text-3xl font-bold mt-5 text-[#a3a3a7]">
                   {item.num}
                 </h2>
               </div>

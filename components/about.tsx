@@ -10,7 +10,7 @@ export default function About() {
   return (
     <section
       ref={ref}
-      className="max-w-[50rem] leading-8 scroll-mt-28 flex flex-col justify-between w-full sm:flex-row"
+      className="max-w-[50rem] leading-8 scroll-mt-28 flex flex-col justify-between w-full sm:flex-row mt-16 sm:mt-0"
       id="about"
     >
       <div className="max-w-[20rem]">
@@ -30,7 +30,7 @@ export default function About() {
           solutions for your business.
         </p>
       </div>
-      <div className="max-w-sm">
+      <div className="max-w-sm sm:mt-0 mt-12">
         <Calendar />
       </div>
     </section>

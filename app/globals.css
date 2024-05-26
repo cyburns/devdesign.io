@@ -33,12 +33,20 @@ html.dark {
 .embla {
   overflow: hidden;
 }
+
 .embla__container {
   display: flex;
 }
+
 .embla__slide {
   flex: 0 0 500px;
   min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .embla__slide {
+    flex: 0 0 90%;
+  }
 }
 
 .gradient-background {

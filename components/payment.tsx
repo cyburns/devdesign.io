@@ -43,7 +43,9 @@ export default function Payment() {
         className="p-4 sm:px-10 flex flex-col justify-center items-center text-base h-100vh mx-auto"
         id="pricing"
       >
-        <h2 className="font-medium mb-8 text-[5rem] uppercase">pricing</h2>
+        <h2 className="font-medium mb-8 text-[3rem] sm:text-[5rem] uppercase">
+          pricing
+        </h2>
         <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 mt-10">
           {priceCardData.map((card, index) => (
             <PriceCard key={index} card={card} index={index} />
@@ -68,7 +70,7 @@ const PriceCard = ({ card, index }: any) => {
     : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 transition";
 
   const mostPopularBadge = isExtended ? (
-    <p className="rounded-full bg-[#cecece] dark:bg-[#4e4e4f] px-2 py-2 text-sm font-semibold leading-5 text-black dark:text-white">
+    <p className="rounded-full bg-[#cecece] dark:bg-[#4e4e4f] px-2 py-2 text-sm font-semibold leading-5 text-black dark:text-white text-center sm:visible invisible">
       Most popular
     </p>
   ) : null;

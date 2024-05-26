@@ -13,7 +13,9 @@ const Works = () => {
       id="works"
       className="p-4 bg-white dark:bg-black rounded-lg mb-32 "
     >
-      <h2 className="font-medium mb-8 text-[5rem] uppercase">selected works</h2>
+      <h2 className="font-medium mb-8 text-[3rem] sm:text-[5rem] uppercase leading-[1] text-center">
+        selected works
+      </h2>
 
       <div className="max-w-[50rem]">
         <Accordion
