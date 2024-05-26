@@ -40,6 +40,9 @@ export default function Footer() {
         TypeScript, Tailwind CSS, Framer Motion, React Email &amp; Resend,
         Vercel hosting.
       </p>
+      <p className="mt-5 hero-gradient-text font-medium">
+        brightdev.dev@gmail.com
+      </p>
     </footer>
   );
 }

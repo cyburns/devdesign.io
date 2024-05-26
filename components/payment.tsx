@@ -14,7 +14,7 @@ const priceCardData = [
       "Full access to source code",
       "Only asynchronous communication",
     ],
-    buyLink: "https://buy.stripe.com/test_aEUaF5fOn4ye8BG289",
+    buyLink: "https://buy.stripe.com/8wMdU725r61D1y0288",
   },
   {
     title: "Extended",
@@ -26,7 +26,7 @@ const priceCardData = [
       "Full access to source code",
       "Live meetings available",
     ],
-    buyLink: "https://buy.stripe.com/test_4gw00rgSr9SybNS8ww",
+    buyLink: "https://buy.stripe.com/00g03h9xT3Tv0tWaEF",
   },
 ];
 
