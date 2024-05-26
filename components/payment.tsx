@@ -12,7 +12,7 @@ const priceCardData = [
       "Available 10AM-4PM, M-F",
       "One request at a time",
       "Full access to source code",
-      "Only asynchrnous communication",
+      "Only asynchronous communication",
     ],
     buyLink: "https://buy.stripe.com/test_aEUaF5fOn4ye8BG289",
   },
@@ -68,7 +68,7 @@ const PriceCard = ({ card, index }: any) => {
     : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 transition";
 
   const mostPopularBadge = isExtended ? (
-    <p className="rounded-full gradient-background px-2.5 py-1 text-sm font-semibold leading-5 text-white">
+    <p className="rounded-full bg-[#cecece] dark:bg-[#4e4e4f] px-2 py-2 text-sm font-semibold leading-5 text-black dark:text-white">
       Most popular
     </p>
   ) : null;
