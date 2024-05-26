@@ -3,9 +3,11 @@
 import React from "react";
 import { useSectionInView } from "@/lib/hooks";
 import Calendar from "@/components/calendar";
+import { FlipWords } from "./ui/flip-words";
 
 export default function About() {
   const { ref } = useSectionInView("About");
+  const words = ["affordable", "beautiful", "responsive", "modern"];
 
   return (
     <section
@@ -14,8 +16,11 @@ export default function About() {
       id="about"
     >
       <div className="max-w-[20rem]">
-        <h2 className="text-3xl font-medium capitalize mb-8 mt-7">
-          Fast, reliable, and affordable full-stack development services
+        <h2 className="text-3xl font-medium mb-8 mt-7">
+          Fast, reliable,
+          <br /> and
+          <FlipWords words={words} /> <br />
+          full-stack development services
         </h2>
         <p className="text-[#a3a3a7]">
           Blur replaces unreliable freelancers and expensive agencies for

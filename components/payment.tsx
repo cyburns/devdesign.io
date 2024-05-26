@@ -46,7 +46,7 @@ export default function Payment() {
         <h2 className="font-medium mb-8 text-[3rem] sm:text-[5rem] uppercase">
           pricing
         </h2>
-        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 mt-10">
+        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2 mt-10 z-50">
           {priceCardData.map((card, index) => (
             <PriceCard key={index} card={card} index={index} />
           ))}
@@ -59,7 +59,7 @@ export default function Payment() {
 const PriceCard = ({ card, index }: any) => {
   const isExtended = index === 1;
 
-  const cardStyles = isExtended ? "ring-2 ring-blue-600" : null;
+  const cardStyles = isExtended ? "ring-2 ring-blue-600 " : null;
 
   const titleStyles = isExtended
     ? "hero-gradient-text"
@@ -77,7 +77,7 @@ const PriceCard = ({ card, index }: any) => {
 
   return (
     <div
-      className={`rounded-3xl p-8 xl:p-10 ${cardStyles} bg-[#EFEFEF] dark:bg-[#161616]`}
+      className={`rounded-3xl p-8 xl:p-10 ${cardStyles} bg-[#EFEFEF] dark:bg-[#161616] shadow-lg`}
     >
       <div className="flex items-center justify-between gap-x-4">
         <h3

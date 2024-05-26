@@ -5,7 +5,7 @@ import Accordion from "./accordion";
 import { useSectionInView } from "@/lib/hooks";
 
 const Works = () => {
-  const { ref } = useSectionInView("About");
+  const { ref } = useSectionInView("Works");
 
   return (
     <div

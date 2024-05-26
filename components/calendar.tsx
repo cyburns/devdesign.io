@@ -9,16 +9,19 @@ const Calendar = () => {
     : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 transition";
 
   return (
-    <div className={`rounded-3xl p-8 xl:p-10 bg-[#EFEFEF] dark:bg-[#161616]`}>
+    <div
+      className={`rounded-3xl p-8 xl:p-10 bg-[#EFEFEF] dark:bg-[#161616] shadow-lg`}
+    >
       <div className="flex items-center justify-between gap-x-4">
         <p className="rounded-full gradient-background px-2.5 py-1 text-sm font-semibold leading-5 text-white">
           Still available
         </p>
       </div>
       <p className="mt-4 text-3xl leading-[1.5] text-black dark:text-white">
-        Join the <span className="hero-gradient-text font-bold"> BLUR </span>
-        team for a <span className="font-bold">30 minute call</span> to discuss
-        your project and ask any questions.
+        Join the{" "}
+        <span className="hero-gradient-text font-bold italic"> BLUR </span>
+        team for a <span className="font-bold italic">30 minute call</span> to
+        discuss your project and ask any questions.
       </p>
 
       <a
