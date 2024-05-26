@@ -1,5 +1,4 @@
 import About from "@/components/about";
-import Carousel from "@/components/carousel";
 import InfiniteWords from "@/components/infinite";
 import Intro from "@/components/intro";
 import Payment from "@/components/payment";
@@ -16,7 +15,6 @@ export default function Home() {
       <About />
       <InfiniteWords />
       <Services />
-      <Carousel />
       <Works />
       <Payment />
       <Reviews />

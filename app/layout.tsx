@@ -10,8 +10,8 @@ import { Toaster } from "react-hot-toast";
 const mont = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "BLUR",
-  description: "Bring your ideas to life with BLUR.",
+  title: "BRIGHT",
+  description: "Bring your ideas to life with blur.",
 };
 
 export default function RootLayout({

@@ -20,17 +20,7 @@ const serviceIcons = [
   <Extension sx={{ fontSize: "3rem", color: "#fff" }} key="icon4" />,
 ];
 
-export default function Carousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel();
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev();
-  }, [emblaApi]);
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
-  }, [emblaApi]);
-
+export default function Carousel({ emblaRef }: any) {
   return (
     <div className="w-screen mb-32 sm:mb-48">
       <div className="embla" ref={emblaRef}>

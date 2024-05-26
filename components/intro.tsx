@@ -5,6 +5,7 @@ import { BsArrowRight } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
 import { Spotlight } from "./ui/Spotlight";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import Link from "next/link";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -36,7 +37,8 @@ export default function Intro() {
         </h2>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium ">
-          <button
+          <Link
+            href="#pricing"
             onClick={() => {
               setActiveSection("Pricing");
               setTimeOfLastClick(Date.now());
@@ -48,7 +50,7 @@ export default function Intro() {
               See Plans
               <BsArrowRight className="ml-4" />
             </span>
-          </button>
+          </Link>
         </div>
       </section>
     </div>

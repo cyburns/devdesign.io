@@ -39,10 +39,7 @@ export default function Payment() {
       id="pricing"
       className="flex items-center justify-center pb-10 mb-16"
     >
-      <div
-        className="p-4 sm:px-10 flex flex-col justify-center items-center text-base h-100vh mx-auto"
-        id="pricing"
-      >
+      <div className="p-4 sm:px-10 flex flex-col justify-center items-center text-base h-100vh mx-auto">
         <h2 className="font-medium mb-8 text-[3rem] sm:text-[5rem] uppercase">
           pricing
         </h2>

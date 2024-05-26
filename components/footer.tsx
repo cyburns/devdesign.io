@@ -12,7 +12,7 @@ export default function Footer() {
       ref={ref}
       className="mb-24 px-4 text-center text-gray-500 flex justify-center items-center flex-col mt-[4rem] sm:mt-[-15rem]"
     >
-      <div className="h-[50rem] w-full  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative items-center justify-center flex flex-col max-w-[50rem]">
+      <div className="h-[30rem] w-full  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative items-center justify-center flex flex-col max-w-[50rem]">
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_5%,black)]" />
         <h1 className="mb-8 text-[3rem] sm:text-[5rem] font-medium !leading-[1] text-black dark:text-white max-w-[50rem] text-center">
           <span className="font-semibold uppercase text-center">
@@ -30,7 +30,7 @@ export default function Footer() {
       </div>
 
       <small className="mb-2 block text-xs text-[#a3a3a7] mt-24">
-        &copy; 2030 BLUR. All rights reserved.
+        &copy; 2030 BRIGHT. All rights reserved.
       </small>
       <p className="text-xs text-[#a3a3a7]">
         <span className="font-semibold text-[#a3a3a7]">

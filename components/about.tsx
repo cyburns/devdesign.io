@@ -23,7 +23,7 @@ export default function About() {
           full-stack development services
         </h2>
         <p className="text-[#a3a3a7]">
-          Blur replaces unreliable freelancers and expensive agencies for
+          BRIGHT replaces unreliable freelancers and expensive agencies for
           <span className="text-black dark:text-white">
             {" "}
             one flat fee,{" "}
