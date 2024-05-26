@@ -45,10 +45,10 @@ export const Spotlight = ({ className, fill }: SpotlightProps) => {
             in2="BackgroundImageFix"
             result="shape"
           ></feBlend>
-          <feGaussianblur
+          <feGaussianBlur
             stdDeviation="151"
             result="effect1_foregroundblur_1065_8"
-          ></feGaussianblur>
+          ></feGaussianBlur>
         </filter>
       </defs>
     </svg>
