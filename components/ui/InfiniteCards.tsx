@@ -79,14 +79,14 @@ export const InfiniteCards = ({
       <ul
         ref={scrollerRef}
         className={cn(
-          " flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
+          " flex min-w-full shrink-0 gap-4 w-max flex-nowrap",
           start && "animate-scroll "
         )}
       >
         {items.map((item, idx) => (
           <li
             key={idx}
-            className="max-w-full relative flex-shrink-0  px-8 py-6"
+            className="max-w-full relative flex-shrink-0"
           >
             <blockquote>
               <div className="relative z-20 flex flex-row items-center">
