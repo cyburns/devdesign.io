@@ -12,11 +12,8 @@ export default function Intro() {
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
-    <div className="h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-8rem] scroll-mt-[100rem]">
-      <Spotlight
-        className="-top-40 left-0 md:left-10 md:-top-20"
-        fill="white"
-      />
+    <div className="h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-6rem] sm:mt-[-9rem] scroll-mt-[100rem]">
+      <Spotlight className="-top-10 left-0 sm:left-0 sm:-top-20" fill="white" />
 
       <section
         ref={ref}
@@ -24,7 +21,7 @@ export default function Intro() {
         className="mb-28 max-w-[50rem] text-center sm:mb-0  flex justify-center flex-col items-center px-4 sm:px-0 mt-[12rem] sm:mt-0"
       >
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_25%,black)]" />
-        <h1 className="mb-8 text-[3rem] sm:text-[5rem] font-medium !leading-[1] ">
+        <h1 className="mb-8 mt-10 text-[3rem] sm:text-[5rem] font-medium !leading-[1] ">
           <span className="font-semibold uppercase">
             Make <span className="hero-gradient-text px-2">your ideas </span>{" "}
             come to life.

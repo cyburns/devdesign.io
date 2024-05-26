@@ -22,7 +22,7 @@ const serviceIcons = [
 
 export default function Carousel({ emblaRef }: any) {
   return (
-    <div className="w-screen mb-32 sm:mb-48">
+    <div className="w-screen mb-10 sm:mb-48">
       <div className="embla" ref={emblaRef}>
         <div className="embla__container ml-0 sm:ml-[30%] mr-0 sm:mr-[30%]">
           {serviceCardsData.map((item, index) => (
