@@ -12,7 +12,7 @@ export default function Intro() {
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
-    <div className="h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-6rem] sm:mt-[-9rem] scroll-mt-[100rem]">
+    <div className="h-screen sm:h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-13rem] sm:mt-[-9rem] scroll-mt-[100rem]">
       <Spotlight className="-top-10 left-0 sm:left-0 sm:-top-20" fill="white" />
 
       <section
@@ -27,11 +27,20 @@ export default function Intro() {
             come to life.
           </span>
         </h1>
-        <h2 className="mb-8 px-4 text-lg font-medium !leading-[1.5] max-w-[40rem] text-black dark:text-white ">
-          <span className="bg-black  w-56 h-32"></span>
-          Crafting seamless digital experiences through cutting-edge
-          prototyping, system design, DevOps, and development expertise.
-        </h2>
+
+        <div className="relative w-full flex justify-center items-center">
+          <div className="absolute inset-0 bg-white dark:bg-black blur-[3rem] w-full h-18 rounded-full z-0" />
+          {/* 
+          <h2 className="relative mb-8 px-4 text-lg font-medium !leading-[1.5] max-w-[40rem] text-black dark:text-white z-10">
+            Crafting seamless digital experiences through cutting-edge
+            prototyping, system design, DevOps, and development expertise.
+          </h2> */}
+          <h2 className="relative mb-8 px-4 text-lg font-medium !leading-[1.5] max-w-[40rem] text-black dark:text-white z-10">
+            BRIGHT offers expertise in web development, guiding projects from
+            concept through development to deployment <br /> and anything
+            in-between.
+          </h2>
+        </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 px-4 text-lg font-medium ">
           <Link
