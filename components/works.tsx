@@ -20,7 +20,7 @@ const Works = () => {
       <div className="max-w-[50rem]">
         <Accordion
           title="Audia"
-          link="https://auda-splash-page.vercel.app/"
+          link="https://www.getaudia.com/"
           answer="Audia is a mobile app that lets users share and discover new music with friends, find communities, and grow businesses around music. Audia uses React Native with TypeScript and Expo Router, it supports both iOS and Android. Audia leverages Google Cloud storage for a scalable, secure data system, reducing retrieval times by 50%. It integrates multiple APIs to enhance user experience, with a Node and Express server ensuring efficient and safe data flow. A Figma vision board guides high-standard UI/UX design, while test-driven development ensures app security and minimizes technical debt."
         />
         <Accordion

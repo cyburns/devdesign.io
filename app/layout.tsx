@@ -28,7 +28,7 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-EHK6K1XR52"
         ></Script>
         <Script id="google-anal">
-          {`  window.dataLayer = window.dataLayer || [];
+          {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-EHK6K1XR52');`}
