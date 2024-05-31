@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import ThemeSwitch from "@/components/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
+import Script from "next/script";
 
 const mont = Montserrat({ subsets: ["latin"] });
 
@@ -21,6 +22,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="!scroll-smooth">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-EHK6K1XR52"
+        ></Script>
+        <Script id="google-anal">
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EHK6K1XR52');`}
+        </Script>
+      </head>
       <body
         className={`${mont.className} bg-white text-gray-950 relative pt-28 sm:pt-36 dark:bg-black dark:text-white dark:text-opacity-90`}
       >
