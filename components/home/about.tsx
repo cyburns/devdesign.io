@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useSectionInView } from "@/lib/hooks";
-import Calendar from "@/components/calendar";
-import { FlipWords } from "./ui/flip-words";
+import Calendar from "@/components/home/calendar";
+import { FlipWords } from "../ui/flip-words";
 
 export default function About() {
   const { ref } = useSectionInView("About");

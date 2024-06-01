@@ -3,7 +3,7 @@
 import { testimonials } from "@/lib/data";
 
 import React from "react";
-import { InfiniteCards } from "./ui/InfiniteCards";
+import { InfiniteCards } from "../ui/InfiniteCards";
 import { useSectionInView } from "@/lib/hooks";
 
 const InfiniteWords = () => {
