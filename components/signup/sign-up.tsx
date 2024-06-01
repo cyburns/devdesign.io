@@ -1,20 +1,128 @@
 "use client";
 
 import React, { useState } from "react";
+import { FIREBASE_AUTH, FIREBASE_STORE } from "@/FirebaseConfig";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+} from "@firebase/auth";
+import * as Yup from "yup";
+import Validator from "email-validator";
+import toast from "react-hot-toast";
+import {
+  RemoveRedEyeOutlined,
+  VisibilityOffOutlined,
+} from "@mui/icons-material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isSecureTextEntry, setSecureTextEntry] = useState(true);
+  const [isValidEmail, setIsValidEmail] = useState<null | string>(null);
+  const [isValidPassword, setIsValidPassword] = useState<null | string>(null);
+  const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const index = 1;
-  const isExtended = index === 1;
+  const auth = FIREBASE_AUTH;
+  const database = FIREBASE_STORE;
 
-  const buyButtonStyles = isExtended
-    ? "bg-[#2563eb] w-full text-white shadow-sm transition hover:bg-blue-500"
-    : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 transition";
+  const isLoadingSpinner = isLoading ? "pt-3" : "";
+
+  const signUpFormSchema = Yup.object().shape({
+    email: Yup.string().email().required(),
+    fullName: Yup.string().required(),
+    username: Yup.string().required(),
+    password: Yup.string().required().min(8),
+  });
+
+  const validateEmailAndPassword = () => {
+    if (!Validator.validate(email)) {
+      setIsValidEmail("Please enter a valid email address");
+      return;
+    } else {
+      setIsValidEmail(null);
+    }
+
+    if (password.length < 8) {
+      setIsValidPassword("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      setIsValidPassword("Password must contain at least one uppercase letter");
+      return;
+    }
+
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      setIsValidPassword(
+        "Password must contain at least one special character"
+      );
+      return;
+    }
+
+    setIsValidEmail(null);
+    setIsValidPassword(null);
+    isLogin ? login() : signUp();
+    return;
+  };
+
+  const signUp = async () => {
+    setIsLoading(true);
+    try {
+      const newAuthUser = await createUserWithEmailAndPassword(
+        auth,
+        email.trim(),
+        password.trim()
+      );
+
+      //   await sendEmailVerification(newAuthUser.user);
+
+      await setDoc(doc(database, "users", newAuthUser.user.uid), {
+        userId: newAuthUser.user.uid,
+        email,
+        createdAt: new Date(),
+        fullName,
+        username,
+      });
+
+      toast.success("Account created successfully. Please verify your email.");
+
+      setEmail("");
+      setFullName("");
+      setUsername("");
+      setPassword("");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error signing up. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const login = async () => {
+    setIsLoading(true);
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+
+      if (userCred) {
+        const docRef = doc(database, "users", userCred.user.uid);
+        const docSnap = await getDoc(docRef);
+        const userData = docSnap.data();
+      }
+
+      toast.success("Logged in successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error logging in. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="flex justify-center items-center ">
@@ -24,45 +132,82 @@ const SignUp = () => {
         </h1>
 
         <h2 className="mb-2 text-black dark:text-white text-center">
-          Sign up to see and write posts or ask any questions.
+          Log in or sign up to see and write posts or ask any questions.
         </h2>
 
         <input
+          autoFocus={true}
           type="text"
           className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
           placeholder="Email address"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="text"
-          className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
-          placeholder="Full Name"
-          onChange={(e) => setFullName(e.target.value)}
-        />
-        <input
-          type="text"
-          className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="text"
-          className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <p className="text-red-500 text-xs">{isValidEmail}</p>
+        {!isLogin && (
+          <>
+            <input
+              type="text"
+              className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+              placeholder="Full Name"
+              onChange={(e) => setFullName(e.target.value)}
+            />
+            <input
+              type="text"
+              className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </>
+        )}
+        <div className="relative flex w-full">
+          <input
+            className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            type={isSecureTextEntry ? "password" : "text"}
+          />
+          <div
+            onClick={() => setSecureTextEntry(!isSecureTextEntry)}
+            className="absolute right-4 top-4 "
+          >
+            {isSecureTextEntry ? (
+              <VisibilityOffOutlined className="text-[#a5a5a6]" />
+            ) : (
+              <RemoveRedEyeOutlined className="text-[#a5a5a6]" />
+            )}
+          </div>
+        </div>
+        <p className="text-red-500 text-xs">{isValidPassword}</p>
         <p className="text-xs text-center mt-3">
           By signing up, you agree to our Terms , Privacy Policy and Cookies
           Policy .
         </p>
         <button
+          onClick={validateEmailAndPassword}
           aria-describedby={`tier-join-now`}
-          className={`${buyButtonStyles} mt-6 block rounded-md py-2 px-3 text-center text-base font-medium leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-60 disabled:cursor-not-allowed`}
-          rel="noopener noreferrer"
+          className={`bg-[#0295f6] w-full text-white transition hover:bg-blue-500 mt-6 rounded-md py-2 px-3 text-center text-base font-medium leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-60 disabled:cursor-not-allowed max-h-[2.5rem]  flex justify-center items-center ${isLoadingSpinner}`}
+          rel="noopener noreferrer "
           disabled={!email || !fullName || !username || !password || isLoading}
         >
-          Sign up
+          {isLoading ? (
+            <div className="">
+              <CircularProgress size={40} className="text-white p-2" />
+            </div>
+          ) : !isLogin ? (
+            "Sign up"
+          ) : (
+            "Log in"
+          )}
         </button>
+        <p className="text-sm mt-10 text-center">
+          Have an account?{" "}
+          <span
+            onClick={() => setIsLogin(!isLogin)}
+            className="text-[#0295f6] hover:cursor-pointer hover:underline"
+          >
+            {isLogin ? "Sign up" : "Log in"}
+          </span>
+        </p>
       </div>
     </section>
   );
