@@ -1,9 +1,9 @@
-import Header from "@/components/header";
+import Header from "@/components/home/header";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import ActiveSectionContextProvider from "@/context/active-section-context";
-import Footer from "@/components/footer";
-import ThemeSwitch from "@/components/theme-switch";
+import Footer from "@/components/home/footer";
+import ThemeSwitch from "@/components/home/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
@@ -12,7 +12,7 @@ const mont = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
   title: "BRIGHT",
-  description: "Bring your ideas to life with blur.",
+  description: "Bring your ideas to life with BRIGHT.",
 };
 
 export default function RootLayout({

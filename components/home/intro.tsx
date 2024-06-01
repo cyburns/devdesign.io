@@ -3,7 +3,7 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { useSectionInView } from "@/lib/hooks";
-import { Spotlight } from "./ui/Spotlight";
+import { Spotlight } from "../ui/Spotlight";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import Link from "next/link";
 import { useMediaQuery } from "@mui/system";

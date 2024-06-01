@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header className="z-[999] relative">
       <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[36rem] sm:rounded-full dark:bg-[#161616] dark:border-black/40 dark:bg-opacity-75"
+        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[42rem] sm:rounded-full dark:bg-[#161616] dark:border-black/40 dark:bg-opacity-75"
         initial={{ y: 0, x: "-50%", opacity: 1 }}
         animate={{ y: 0, x: "-50%", opacity: 1 }}
       />
@@ -58,6 +58,14 @@ export default function Header() {
               </Link>
             </li>
           ))}
+          <a
+            href="/signup"
+          >
+            <button className="lg:border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
+              <span>Sign up</span>
+              <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px lg:bg-gradient-to-r from-transparent via-[#2563eb] to-transparent  h-px" />
+            </button>
+          </a>
         </ul>
       </nav>
     </header>
