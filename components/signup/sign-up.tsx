@@ -138,7 +138,7 @@ const SignUp = () => {
         <input
           autoFocus={true}
           type="text"
-          className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+          className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-4 rounded-lg placeholder:text-[#a5a5a6]"
           placeholder="Email address"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -147,13 +147,13 @@ const SignUp = () => {
           <>
             <input
               type="text"
-              className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+              className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-4 rounded-lg placeholder:text-[#a5a5a6]"
               placeholder="Full Name"
               onChange={(e) => setFullName(e.target.value)}
             />
             <input
               type="text"
-              className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+              className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-4 rounded-lg placeholder:text-[#a5a5a6]"
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -161,14 +161,14 @@ const SignUp = () => {
         )}
         <div className="relative flex w-full">
           <input
-            className="bg-[#EFEFEF] dark:bg-[#161616] w-full m-1 px-3 py-3 rounded-lg placeholder:text-[#a5a5a6]"
+            className="bg-[#EFEFEF] dark:bg-[#161616] w-full mt-1 px-3 py-4 rounded-lg placeholder:text-[#a5a5a6]"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             type={isSecureTextEntry ? "password" : "text"}
           />
           <div
             onClick={() => setSecureTextEntry(!isSecureTextEntry)}
-            className="absolute right-4 top-4 "
+            className="absolute right-4 top-5"
           >
             {isSecureTextEntry ? (
               <VisibilityOffOutlined className="text-[#a5a5a6]" />
