@@ -6,9 +6,7 @@ import { links } from "@/lib/data";
 import Link from "next/link";
 import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
-import BrightLogo from "@/public/bright-logo-4-sm.png";
-import Image from "next/image";
-
+ 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
@@ -58,9 +56,7 @@ export default function Header() {
               </Link>
             </li>
           ))}
-          <a
-            href="/signup"
-          >
+          <a href="/signup">
             <button className="lg:border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
               <span>Sign up</span>
               <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px lg:bg-gradient-to-r from-transparent via-[#2563eb] to-transparent  h-px" />

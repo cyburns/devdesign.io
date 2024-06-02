@@ -8,7 +8,7 @@ const Welcome = () => {
       <div>
         <h1 className="text-green-500 dark:text-green-400 mt-24">
           Thank you for joing the BRIGHT community. We will have content up and
-          runningn soong!
+          running soon!
         </h1>
       </div>
     </div>

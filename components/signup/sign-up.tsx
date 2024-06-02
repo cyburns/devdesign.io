@@ -5,7 +5,6 @@ import { FIREBASE_AUTH, FIREBASE_STORE } from "@/FirebaseConfig";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
-  sendEmailVerification,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
 import * as Yup from "yup";
@@ -16,6 +15,7 @@ import {
   VisibilityOffOutlined,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
+import useAuthStore from "@/store";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +30,7 @@ const SignUp = () => {
 
   const auth = FIREBASE_AUTH;
   const database = FIREBASE_STORE;
+  const currentUser = useAuthStore((state) => state.user);
 
   const isLoadingSpinner = isLoading ? "pt-3" : "";
 
@@ -80,8 +81,6 @@ const SignUp = () => {
         password.trim()
       );
 
-      //   await sendEmailVerification(newAuthUser.user);
-
       await setDoc(doc(database, "users", newAuthUser.user.uid), {
         userId: newAuthUser.user.uid,
         email,
@@ -91,6 +90,8 @@ const SignUp = () => {
       });
 
       toast.success("Account created successfully. Please verify your email.");
+      localStorage.setItem("userInfo", JSON.stringify(newAuthUser));
+      currentUser(newAuthUser);
 
       setEmail("");
       setFullName("");
