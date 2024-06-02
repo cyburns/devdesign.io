@@ -35,7 +35,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${mont.className} bg-white text-gray-950 relative pt-28 sm:pt-36 dark:bg-black dark:text-white dark:text-opacity-90`}
+        className={`${mont.className} bg-white text-gray-950 relative  dark:bg-black dark:text-white dark:text-opacity-90`}
       >
         <ThemeContextProvider>
           <ActiveSectionContextProvider>

@@ -15,7 +15,7 @@ export default function Intro() {
   const smallScreenSize = useMediaQuery("(min-width:967px)");
 
   return (
-    <div className="h-screen sm:h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-13rem] sm:mt-[-9rem] scroll-mt-[100rem]">
+    <div className="h-screen sm:h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-13rem] sm:mt-[-9rem] scroll-mt-[100rem] pt-28 sm:pt-36">
       <Spotlight className="top-10 left-0 sm:left-0 sm:-top-20" fill="white" />
 
       <section

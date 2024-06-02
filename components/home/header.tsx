@@ -1,69 +1,149 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { links } from "@/lib/data";
 import Link from "next/link";
-import clsx from "clsx";
 import { useActiveSectionContext } from "@/context/active-section-context";
- 
+import { User, onAuthStateChanged } from "firebase/auth";
+import { FIREBASE_AUTH } from "@/FirebaseConfig";
+import { useRouter } from "next/navigation";
+import {
+  HomeRounded,
+  SearchRounded,
+  AddBoxOutlined,
+  MapsUgcOutlined,
+  CreditCardOutlined,
+  InsightsOutlined,
+} from "@mui/icons-material";
+import { cn } from "@/utils/cn";
+
+const iconsArray = [
+  <HomeRounded sx={{ fontSize: "2rem" }} key="icon1" />,
+  <SearchRounded sx={{ fontSize: "2rem" }} key="icon2" />,
+  <InsightsOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
+  <AddBoxOutlined sx={{ fontSize: "2rem" }} key="icon3" />,
+  <CreditCardOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
+  <MapsUgcOutlined sx={{ fontSize: "2rem" }} key="icon4" />,
+];
+
 export default function Header() {
+  const [isUser, setIsUser] = useState<User | null>(null);
+  const [pathName, setPathName] = useState<string>("signup");
+  const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+
+  const router = useRouter();
+
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(
+      FIREBASE_AUTH,
+      (user: User | null) => {
+        setIsUser(user);
+        setPathName("profile");
+      }
+    );
+
+    return () => unsubscribe();
+  }, []);
+
+  const linkVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const currentWord = "BRIGHT";
+
   return (
-    <header className="z-[999] relative">
-      <motion.div
-        className="fixed top-0 left-1/2 h-[4.5rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] sm:w-[42rem] sm:rounded-full dark:bg-[#161616] dark:border-black/40 dark:bg-opacity-75"
-        initial={{ y: 0, x: "-50%", opacity: 1 }}
-        animate={{ y: 0, x: "-50%", opacity: 1 }}
-      />
-
-      <nav className="flex fixed top-[0.15rem] left-1/2 h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium text-gray-500 sm:w-[initial] sm:flex-nowrap sm:gap-5">
-          {links.map((link) => (
-            <li
-              className="h-3/4 flex items-center justify-center relative"
-              key={link.hash}
-            >
-              <Link
-                className={clsx(
-                  "flex w-full items-center justify-center px-3 py-3 hover:text-gray-950 transition dark:text-[#a3a3a7] dark:hover:text-white",
-                  {
-                    "text-gray-950 dark:text-gray-200":
-                      activeSection === link.name,
-                  }
-                )}
-                href={link.hash}
-                onClick={() => {
-                  setActiveSection(link.name);
-                  setTimeOfLastClick(Date.now());
-                }}
-              >
-                {link.name}
-
-                {link.name === activeSection && (
-                  <motion.span
-                    className="bg-gray-100 rounded-full absolute inset-0 -z-10 dark:bg-[#373738]"
-                    layoutId="activeSection"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
+    <header className="z-[999] fixed h-screen bg-white dark:bg-black">
+      <aside>
+        <nav
+          className={`ml-5 border-r border-[#EFEFEF] dark:border-[#161616] h-screen transition-all duration-300 ${
+            isNavOpen ? "w-64" : "w-[3.5rem]"
+          }`}
+          onMouseEnter={() => setIsNavOpen(true)}
+          onMouseLeave={() => setIsNavOpen(false)}
+        >
+          <h1 className="text-[1rem] sm:text-[2.4rem] font-thin pt-8 mb-2">
+            <span className="hero-gradient-text">
+              {!isNavOpen && "B"}
+              <AnimatePresence>
+                {isNavOpen && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 10,
                     }}
-                  />
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: 0.4,
+                      stiffness: 100,
+                      damping: 10,
+                    }}
+                    className={cn(
+                      "z-10 inline-block relative text-left text-neutral-900"
+                    )}
+                    key={currentWord}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 0.4,
+                      }}
+                      className="hero-gradient-text"
+                    >
+                      {currentWord}
+                    </motion.span>
+                  </motion.div>
                 )}
-              </Link>
-            </li>
-          ))}
-          <a href="/signup">
-            <button className="lg:border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-              <span>Sign up</span>
-              <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px lg:bg-gradient-to-r from-transparent via-[#2563eb] to-transparent  h-px" />
-            </button>
-          </a>
-        </ul>
-      </nav>
+              </AnimatePresence>
+            </span>
+          </h1>
+          <ul className="flex flex-col justify-center">
+            <div className="-ml-3 mr-3">
+              {links.map((link, index) => (
+                <li
+                  className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all"
+                  key={index}
+                >
+                  <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
+                    {iconsArray[index]}
+                  </span>
+                  <AnimatePresence>
+                    {isNavOpen && (
+                      <motion.span
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={linkVariants}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Link
+                          className="text-black dark:text-white text-lg mt-5 font-thin"
+                          href={link.link}
+                        >
+                          {link.name}
+                        </Link>
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </li>
+              ))}
+            </div>
+          </ul>
+        </nav>
+      </aside>
     </header>
   );
 }
