@@ -67,7 +67,7 @@ export default function Header() {
       <aside className="invisible sm:visible fixed h-screen bg-white dark:bg-black z-[999]">
         <nav
           className={`ml-5 border-r border-[#EFEFEF] dark:border-[#161616] h-screen transition-all duration-300 ${
-            isNavOpen ? "w-64" : "w-[3.5rem]"
+            isNavOpen ? "w-[19rem]" : "w-[3.5rem]"
           }`}
           onMouseEnter={() => setIsNavOpen(true)}
           onMouseLeave={() => setIsNavOpen(false)}
