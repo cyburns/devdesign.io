@@ -20,7 +20,7 @@ const Page = () => {
     return () => unsubscribe();
   }, []);
 
-  return isUser ? <Welcome /> : <SignUp />;
+  return <SignUp />;
 };
 
 export default Page;

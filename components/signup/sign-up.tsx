@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { FIREBASE_AUTH, FIREBASE_STORE } from "@/FirebaseConfig";
+import React, { useState, useRef } from "react";
+import {
+  FIREBASE_AUTH,
+  FIREBASE_STORAGE,
+  FIREBASE_STORE,
+} from "@/FirebaseConfig";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
@@ -15,7 +19,8 @@ import {
   VisibilityOffOutlined,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
-import useAuthStore from "@/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin, setNameAndUsername } from "@/store";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +35,8 @@ const SignUp = () => {
 
   const auth = FIREBASE_AUTH;
   const database = FIREBASE_STORE;
-  const currentUser = useAuthStore((state) => state.user);
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state: any) => state.user);
 
   const isLoadingSpinner = isLoading ? "pt-3" : "";
 
@@ -91,7 +97,8 @@ const SignUp = () => {
 
       toast.success("Account created successfully. Please verify your email.");
       localStorage.setItem("userInfo", JSON.stringify(newAuthUser));
-      currentUser(newAuthUser);
+      dispatch(setLogin({ user: newAuthUser.user.uid, email }));
+      dispatch(setNameAndUsername({ user: { fullName, username } }));
 
       setEmail("");
       setFullName("");
@@ -126,7 +133,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="flex justify-center items-center ">
+    <section className="flex justify-center items-center pt-10">
       <div className="flex flex-col w-full justify-center items-center max-w-xs">
         <h1 className="text-[3rem] sm:text-[5rem] font-thin">
           <span className="hero-gradient-text">BRIGHT</span>

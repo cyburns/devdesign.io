@@ -46,8 +46,15 @@ export default function Header() {
     const unsubscribe = onAuthStateChanged(
       FIREBASE_AUTH,
       (user: User | null) => {
+        if (!user) {
+          setPathName("signup");
+          setProfilePath("Sign up");
+          return;
+        }
+
         setIsUser(user);
         setPathName("profile");
+        setProfilePath("Profile");
       }
     );
 
@@ -101,7 +108,7 @@ export default function Header() {
                 </Link>
               ))}
 
-              <Link href={"/profile"}>
+              <Link href={pathName}>
                 <li className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all">
                   <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
                     <AccountCircleOutlined sx={{ fontSize: "2rem" }} />

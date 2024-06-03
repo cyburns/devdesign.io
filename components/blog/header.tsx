@@ -1,5 +1,6 @@
 import React from "react";
 import { AlternateEmailOutlined, EditNoteOutlined } from "@mui/icons-material";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -14,7 +15,12 @@ const Header = () => {
           </h1>
         </div>
         <div>
-          <EditNoteOutlined sx={{ fontSize: "3rem" }} />
+          <Link href="/blog/new">
+            <EditNoteOutlined
+              sx={{ fontSize: "3rem" }}
+              className="text-black dark:text-white hover:opacity-30 transition"
+            />
+          </Link>
         </div>
       </div>
     </section>

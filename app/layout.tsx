@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/navbar/header";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
@@ -7,13 +9,10 @@ import ThemeSwitch from "@/components/home/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import { store } from "@/store/store";
+import { Provider } from "react-redux";
 
 const mont = Montserrat({ subsets: ["latin"] });
-
-export const metadata = {
-  title: "BRIGHT",
-  description: "Bring your ideas to life with BRIGHT.",
-};
 
 export default function RootLayout({
   children,
@@ -37,16 +36,18 @@ export default function RootLayout({
       <body
         className={`${mont.className} bg-white text-gray-950 relative  dark:bg-black dark:text-white dark:text-opacity-90`}
       >
-        <ThemeContextProvider>
-          <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
+        <Provider store={store}>
+          <ThemeContextProvider>
+            <ActiveSectionContextProvider>
+              <Header />
+              {children}
+              <Footer />
 
-            <Toaster position="top-right" />
-            <ThemeSwitch />
-          </ActiveSectionContextProvider>
-        </ThemeContextProvider>
+              <Toaster position="top-right" />
+              <ThemeSwitch />
+            </ActiveSectionContextProvider>
+          </ThemeContextProvider>
+        </Provider>
       </body>
     </html>
   );
