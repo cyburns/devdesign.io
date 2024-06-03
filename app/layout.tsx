@@ -1,4 +1,4 @@
-import Header from "@/components/home/header";
+import Header from "@/components/navbar/header";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import ActiveSectionContextProvider from "@/context/active-section-context";
