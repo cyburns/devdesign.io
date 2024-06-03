@@ -1,10 +1,9 @@
-import Welcome from "@/components/welcome/welcome";
 import React from "react";
-import Profile from "@/components/profile/profile";
+import Profile from "@/app/profile/profile";
 
 const Page = () => {
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <Profile />
     </div>
   );

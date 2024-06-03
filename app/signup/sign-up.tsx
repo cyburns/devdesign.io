@@ -1,26 +1,27 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import * as Yup from "yup";
+import Validator from "email-validator";
+import toast from "react-hot-toast";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   FIREBASE_AUTH,
   FIREBASE_STORAGE,
   FIREBASE_STORE,
 } from "@/FirebaseConfig";
-import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
-import * as Yup from "yup";
-import Validator from "email-validator";
-import toast from "react-hot-toast";
 import {
   RemoveRedEyeOutlined,
   VisibilityOffOutlined,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useDispatch, useSelector } from "react-redux";
-import { setLogin, setNameAndUsername } from "@/store";
+import { useDispatch } from "react-redux";
+import { setIsFullyRegistered, setLogin, setNameAndUsername } from "@/store";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +37,7 @@ const SignUp = () => {
   const auth = FIREBASE_AUTH;
   const database = FIREBASE_STORE;
   const dispatch = useDispatch();
-  const currentUser = useSelector((state: any) => state.user);
+  const router = useRouter();
 
   const isLoadingSpinner = isLoading ? "pt-3" : "";
 
@@ -95,10 +96,22 @@ const SignUp = () => {
         username,
       });
 
+      const userData = {
+        userId: newAuthUser.user.uid,
+        email,
+        createdAt: new Date(),
+        fullName,
+        username,
+      };
+
+      router.push("/profile");
       toast.success("Account created successfully. Please verify your email.");
-      localStorage.setItem("userInfo", JSON.stringify(newAuthUser));
-      dispatch(setLogin({ user: newAuthUser.user.uid, email }));
+      localStorage.setItem("user-auth", JSON.stringify(newAuthUser));
+      localStorage.setItem("user-data", JSON.stringify(userData));
+
+      dispatch(setLogin({ user: { id: newAuthUser.user.uid, email } }));
       dispatch(setNameAndUsername({ user: { fullName, username } }));
+      dispatch(setIsFullyRegistered({ user: { isFullyRegistered: false } }));
 
       setEmail("");
       setFullName("");

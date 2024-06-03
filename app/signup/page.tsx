@@ -1,6 +1,6 @@
 "use client";
 
-import SignUp from "@/components/signup/sign-up";
+import SignUp from "@/app/signup/sign-up";
 import { User, onAuthStateChanged } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { FIREBASE_AUTH } from "@/FirebaseConfig";

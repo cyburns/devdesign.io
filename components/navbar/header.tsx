@@ -82,7 +82,7 @@ export default function Header() {
           <ul className="flex flex-col justify-center">
             <div className="-ml-3 mr-3">
               {links.map((link, index) => (
-                <Link href={link.link}>
+                <Link key={index} href={link.link}>
                   <li
                     className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all"
                     key={index}
