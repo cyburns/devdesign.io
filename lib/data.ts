@@ -13,6 +13,11 @@ export const links = [
     link: "/",
   },
   {
+    name: "Blog",
+    hash: "#blog",
+    link: "/blog",
+  },
+  {
     name: "About",
     hash: "#about",
     link: "/about",
