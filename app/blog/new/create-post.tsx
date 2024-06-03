@@ -13,6 +13,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { FIREBASE_STORE } from "@/FirebaseConfig";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useRouter } from "next/navigation";
 
 const CreatePost = () => {
   const [postTitle, setPostTitle] = useState("");
@@ -20,7 +22,7 @@ const CreatePost = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const auth = getAuth();
-
+  const router = useRouter();
   const currentUser = auth.currentUser;
   const database = FIREBASE_STORE;
 
@@ -39,8 +41,9 @@ const CreatePost = () => {
     try {
       if (currentUser) {
         const newPostData = {
-          userProfilePicture: userProfile.profilePicture,
+          userProfilePicture: userProfile.profilePicture || "",
           username: userProfile.username,
+          fullName: userProfile.fullName,
           comments: [],
           likes: [],
           createdAt: new Date(),
@@ -57,11 +60,14 @@ const CreatePost = () => {
         const userDocRef = doc(database, "users", currentUser.uid);
         await updateDoc(userDocRef, { posts: arrayUnion(postDocRef.id) });
       }
+
+      toast.success("Post created successfully.");
+      router.push("/blog");
     } catch (error) {
       toast.error("Error creating post. Please try again later.");
+      console.log(error);
     } finally {
       setIsLoading(false);
-      toast.success("Post created successfully.");
     }
   };
 
@@ -76,12 +82,16 @@ const CreatePost = () => {
             </span>
           </h1>
         </div>
-        <div className="bg-blue-500 rounded-xl hover:opacity-40 transition">
+        <div className="bg-blue-500 rounded-md hover:opacity-40 transition">
           <button
             onClick={handlePost}
             className="text-white px-5 py-2 font-medium "
           >
-            POST
+            {isLoading ? (
+              <CircularProgress size={40} className="text-white p-2" />
+            ) : (
+              "POST"
+            )}
           </button>
         </div>
       </div>
@@ -89,7 +99,7 @@ const CreatePost = () => {
       <div className="mt-10 w-full border-b-2 flex flex-row ">
         <textarea
           placeholder="Title"
-          className="placeholder:text-[#a5a5a6] placeholder:text-[3rem] active:outline-none w-full text-[3rem] font-normal outline-none bg-white dark:bg-black resize-none overflow-hidden"
+          className="placeholder:text-[#a5a5a6] font-semibold placeholder:text-[3rem] active:outline-none w-full text-[3rem] outline-none bg-white dark:bg-black resize-none overflow-hidden"
           onChange={(e) => setPostTitle(e.target.value)}
           rows={1}
           onInput={(e) => {
@@ -99,7 +109,7 @@ const CreatePost = () => {
           }}
         />
       </div>
-      <div className="mt-2 w-full">
+      <div className="mt-5 w-full">
         <textarea
           placeholder="Tell your story..."
           className="placeholder:text-[#a5a5a6] placeholder:text-[1.5rem] active:outline-none w-full text-[1.5rem] font-normal outline-none bg-white dark:bg-black resize-none overflow-hidden"
