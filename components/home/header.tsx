@@ -14,14 +14,21 @@ import {
   AddBoxOutlined,
   MapsUgcOutlined,
   CreditCardOutlined,
-  InsightsOutlined,
+  ExploreOutlined,
+  GitHub,
+  LinkedIn,
+  Language,
+  Groups,
+  Assignment,
 } from "@mui/icons-material";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
+import BrightLogo from "@/public/bright-app-icon-lg.png";
 
 const iconsArray = [
   <HomeRounded sx={{ fontSize: "2rem" }} key="icon1" />,
   <SearchRounded sx={{ fontSize: "2rem" }} key="icon2" />,
-  <InsightsOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
+  <ExploreOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
   <AddBoxOutlined sx={{ fontSize: "2rem" }} key="icon3" />,
   <CreditCardOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
   <MapsUgcOutlined sx={{ fontSize: "2rem" }} key="icon4" />,
@@ -31,11 +38,9 @@ export default function Header() {
   const [isUser, setIsUser] = useState<User | null>(null);
   const [pathName, setPathName] = useState<string>("signup");
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+  const [isMobileMenuOpen, toggleMobileMenu] = useState(false);
 
   const router = useRouter();
-
-  const { activeSection, setActiveSection, setTimeOfLastClick } =
-    useActiveSectionContext();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
@@ -62,8 +67,8 @@ export default function Header() {
   const currentWord = "BRIGHT";
 
   return (
-    <header className="z-[999] fixed h-screen bg-white dark:bg-black">
-      <aside>
+    <div className="z-[999] ">
+      <aside className="invisible sm:visible fixed h-screen bg-white dark:bg-black z-[999] ">
         <nav
           className={`ml-5 border-r border-[#EFEFEF] dark:border-[#161616] h-screen transition-all duration-300 ${
             isNavOpen ? "w-64" : "w-[3.5rem]"
@@ -71,7 +76,7 @@ export default function Header() {
           onMouseEnter={() => setIsNavOpen(true)}
           onMouseLeave={() => setIsNavOpen(false)}
         >
-          <h1 className="text-[1rem] sm:text-[2.4rem] font-thin pt-8 mb-2">
+          <h1 className="text-[2.4rem] sm:text-[2.4rem] font-thin pt-8 mb-2">
             <span className="hero-gradient-text">
               {!isNavOpen && "B"}
               <AnimatePresence>
@@ -130,7 +135,7 @@ export default function Header() {
                         transition={{ duration: 0.3 }}
                       >
                         <Link
-                          className="text-black dark:text-white text-lg mt-5 font-thin"
+                          className="text-black dark:text-white text-lg  font-thin"
                           href={link.link}
                         >
                           {link.name}
@@ -144,6 +149,57 @@ export default function Header() {
           </ul>
         </nav>
       </aside>
-    </header>
+
+      <nav className="visible sm:invisible bg-black dark:bg-white">
+        <header
+          id="header"
+          className={
+            isMobileMenuOpen
+              ? "active expanded-header bg-white dark:bg-black"
+              : ""
+          }
+        >
+          <div className="container">
+            <nav className="nav">
+              <ul className="nav-list nav-list-larger">
+                {links.map((link, index) => (
+                  <li
+                    className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all nav-item text-black dark:text-white"
+                    key={index}
+                  >
+                    <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
+                      {iconsArray[index]}
+                    </span>
+
+                    <Link
+                      className="text-black dark:text-white text-lg font-thin"
+                      href={link.link}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul className="nav-list nav-list-mobile flex">
+                <li className="left nav-item">
+                  <a href="/" className="nav-link nav-link-cb">
+                    <Image src={BrightLogo} alt="logo" className=" mt-4" />
+                  </a>
+                </li>
+                <li className="right nav-item">
+                  <div
+                    className="mobile-menu"
+                    onClick={() => toggleMobileMenu(!isMobileMenuOpen)}
+                  >
+                    <span className="line line-top bg-black dark:bg-white"></span>
+                    <span className="line line-bottom bg-black dark:bg-white"></span>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </nav>
+    </div>
   );
 }
