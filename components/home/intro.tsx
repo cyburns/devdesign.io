@@ -15,7 +15,7 @@ export default function Intro() {
   const smallScreenSize = useMediaQuery("(min-width:967px)");
 
   return (
-    <div className="h-screen sm:h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-13rem] sm:mt-[-9rem] scroll-mt-[100rem] pt-28 sm:pt-36">
+    <div className="h-screen sm:h-[40rem] max-w-[70rem] w-full dark:bg-grid-white/[0.15] bg-grid-black/[0.2] relative flex items-center justify-center flex-col mt-[-13rem] sm:mt-[-9rem] scroll-mt-[100rem] pt-28 sm:pt-36">
       <Spotlight className="top-10 left-0 sm:left-0 sm:-top-20" fill="white" />
 
       <section
@@ -23,7 +23,8 @@ export default function Intro() {
         id="home"
         className="mb-28 max-w-[50rem] text-center sm:mb-0  flex justify-center flex-col items-center px-4 sm:px-0 mt-[12rem] sm:mt-0"
       >
-        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_25%,black)]" />
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+
         <h1 className="mb-8 mt-10 text-[3rem] sm:text-[5rem] font-medium !leading-[1] ">
           <span className="font-semibold uppercase">
             Make {!smallScreenSize && <br />}{" "}

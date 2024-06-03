@@ -15,15 +15,11 @@ import {
   MapsUgcOutlined,
   CreditCardOutlined,
   ExploreOutlined,
-  GitHub,
-  LinkedIn,
-  Language,
-  Groups,
-  Assignment,
 } from "@mui/icons-material";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import BrightLogo from "@/public/bright-app-icon-lg.png";
+import { Avatar } from "@mui/material";
 
 const iconsArray = [
   <HomeRounded sx={{ fontSize: "2rem" }} key="icon1" />,
@@ -68,7 +64,7 @@ export default function Header() {
 
   return (
     <div className="z-[999] ">
-      <aside className="invisible sm:visible fixed h-screen bg-white dark:bg-black z-[999] ">
+      <aside className="invisible sm:visible fixed h-screen bg-white dark:bg-black z-[999]">
         <nav
           className={`ml-5 border-r border-[#EFEFEF] dark:border-[#161616] h-screen transition-all duration-300 ${
             isNavOpen ? "w-64" : "w-[3.5rem]"
@@ -78,8 +74,45 @@ export default function Header() {
         >
           <h1 className="text-[2.4rem] sm:text-[2.4rem] font-thin pt-8 mb-2">
             <span className="hero-gradient-text">
-              {!isNavOpen && "B"}
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
+                {!isNavOpen && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 10,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                      stiffness: 100,
+                      damping: 10,
+                    }}
+                    className={cn(
+                      "z-10 inline-block relative text-left text-neutral-900"
+                    )}
+                    exit={{
+                      opacity: 0,
+                      x: -40,
+                      filter: "blur(8px)",
+                      display: "flex",
+                    }}
+                    key={1}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 0.4,
+                      }}
+                      className="hero-gradient-text"
+                    >
+                      B
+                    </motion.span>
+                  </motion.div>
+                )}
                 {isNavOpen && (
                   <motion.div
                     initial={{
@@ -91,13 +124,19 @@ export default function Header() {
                       y: 0,
                     }}
                     transition={{
-                      duration: 0.4,
+                      duration: 0.2,
                       stiffness: 100,
                       damping: 10,
                     }}
                     className={cn(
                       "z-10 inline-block relative text-left text-neutral-900"
                     )}
+                    exit={{
+                      opacity: 0,
+                      x: -40,
+                      filter: "blur(8px)",
+                      display: "flex",
+                    }}
                     key={currentWord}
                   >
                     <motion.span
@@ -145,6 +184,38 @@ export default function Header() {
                   </AnimatePresence>
                 </li>
               ))}
+            </div>
+            <div className="-ml-3 mr-3">
+              <li className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all">
+                <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
+                  <Avatar
+                    sx={{ width: 32, height: 32 }}
+                    className="dark:bg-[#EFEFEF] bg-[#161616]"
+                  >
+                    <span className="text-sm text-white dark:text-black">
+                      OP
+                    </span>
+                  </Avatar>
+                </span>
+                <AnimatePresence>
+                  {isNavOpen && (
+                    <motion.span
+                      initial="hidden"
+                      animate="visible"
+                      exit="hidden"
+                      variants={linkVariants}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Link
+                        href={"/profile"}
+                        className="text-black dark:text-white text-lg  font-thin"
+                      >
+                        Profile
+                      </Link>
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </li>
             </div>
           </ul>
         </nav>
