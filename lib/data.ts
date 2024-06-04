@@ -9,27 +9,38 @@ import wordanalyticsImg from "@/public/wordanalytics.png";
 export const links = [
   {
     name: "Home",
-    hash: "#home",
+    hash: "/",
+    link: "/",
+  },
+  {
+    name: "Blog",
+    hash: "#blog",
+    link: "/blog",
   },
   {
     name: "About",
     hash: "#about",
+    link: "/about",
   },
   {
     name: "Services",
     hash: "#services",
+    link: "/services",
   },
   {
     name: "Works",
     hash: "#works",
+    link: "/works",
   },
   {
     name: "Pricing",
     hash: "#pricing",
+    link: "/pricing",
   },
   {
     name: "Contact",
     hash: "#contact",
+    link: "/contact",
   },
 ] as const;
 
@@ -160,3 +171,6 @@ export const serviceCardsData = [
     num: "04",
   },
 ] as const;
+
+export const defulatPfp =
+  "https://firebasestorage.googleapis.com/v0/b/seatr-416422.appspot.com/o/profile-pictures%2FzZlxE2oUvKYpgOgATRFrBZuewGm1?alt=media&token=75c9c254-e4e5-4cd4-963b-53227ef5a8ee";

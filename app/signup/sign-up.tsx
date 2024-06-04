@@ -1,21 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { FIREBASE_AUTH, FIREBASE_STORE } from "@/FirebaseConfig";
-import { doc, setDoc, getDoc } from "firebase/firestore";
-import {
-  createUserWithEmailAndPassword,
-  sendEmailVerification,
-  signInWithEmailAndPassword,
-} from "@firebase/auth";
 import * as Yup from "yup";
 import Validator from "email-validator";
 import toast from "react-hot-toast";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { FIREBASE_AUTH, FIREBASE_STORE } from "@/FirebaseConfig";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "@firebase/auth";
 import {
   RemoveRedEyeOutlined,
   VisibilityOffOutlined,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useRouter } from "next/navigation";
+import useAuthStore from "@/store";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -28,8 +29,14 @@ const SignUp = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const submitButtonDisabled = isLogin
+    ? !email || !password
+    : !email || !fullName || !username || !password;
+
   const auth = FIREBASE_AUTH;
   const database = FIREBASE_STORE;
+  const loginUser = useAuthStore((state) => state.login);
+  const router = useRouter();
 
   const isLoadingSpinner = isLoading ? "pt-3" : "";
 
@@ -80,8 +87,6 @@ const SignUp = () => {
         password.trim()
       );
 
-      //   await sendEmailVerification(newAuthUser.user);
-
       await setDoc(doc(database, "users", newAuthUser.user.uid), {
         userId: newAuthUser.user.uid,
         email,
@@ -90,7 +95,18 @@ const SignUp = () => {
         username,
       });
 
+      const userData = {
+        userId: newAuthUser.user.uid,
+        email,
+        createdAt: new Date(),
+        fullName,
+        username,
+      };
+
+      router.push("/profile");
       toast.success("Account created successfully. Please verify your email.");
+
+      loginUser(userData);
 
       setEmail("");
       setFullName("");
@@ -113,9 +129,12 @@ const SignUp = () => {
         const docRef = doc(database, "users", userCred.user.uid);
         const docSnap = await getDoc(docRef);
         const userData = docSnap.data();
+
+        loginUser(userData);
       }
 
       toast.success("Logged in successfully");
+      router.push("/profile");
     } catch (error) {
       console.error(error);
       toast.error("Error logging in. Please try again later.");
@@ -125,7 +144,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="flex justify-center items-center ">
+    <section className="flex justify-center items-center pt-10">
       <div className="flex flex-col w-full justify-center items-center max-w-xs">
         <h1 className="text-[3rem] sm:text-[5rem] font-thin">
           <span className="hero-gradient-text">BRIGHT</span>
@@ -187,7 +206,7 @@ const SignUp = () => {
           aria-describedby={`tier-join-now`}
           className={`bg-[#0295f6] w-full text-white transition hover:bg-blue-500 mt-6 rounded-md py-2 px-3 text-center text-base font-medium leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-60 disabled:cursor-not-allowed max-h-[2.5rem]  flex justify-center items-center ${isLoadingSpinner}`}
           rel="noopener noreferrer "
-          disabled={!email || !fullName || !username || !password || isLoading}
+          disabled={submitButtonDisabled}
         >
           {isLoading ? (
             <div className="">

@@ -1,4 +1,4 @@
-import Header from "@/components/home/header";
+import Header from "@/components/navbar/header";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import ActiveSectionContextProvider from "@/context/active-section-context";
@@ -9,10 +9,11 @@ import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 
 const mont = Montserrat({ subsets: ["latin"] });
-
 export const metadata = {
   title: "BRIGHT",
-  description: "Bring your ideas to life with BRIGHT.",
+  description: "Fast web development",
+  image: "https://example.com/image.jpg",
+  url: "https://example.com",
 };
 
 export default function RootLayout({
@@ -35,14 +36,13 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${mont.className} bg-white text-gray-950 relative pt-28 sm:pt-36 dark:bg-black dark:text-white dark:text-opacity-90`}
+        className={`${mont.className} bg-white text-gray-950 relative  dark:bg-black dark:text-white dark:text-opacity-90`}
       >
         <ThemeContextProvider>
           <ActiveSectionContextProvider>
             <Header />
             {children}
             <Footer />
-
             <Toaster position="top-right" />
             <ThemeSwitch />
           </ActiveSectionContextProvider>
