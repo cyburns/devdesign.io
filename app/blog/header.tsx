@@ -15,7 +15,7 @@ const Header = () => {
           </h1>
         </div>
         <div>
-          <Link href="/blog/new">
+          <Link href="/blog/new" className="flex flex-row items-center">
             <EditNoteOutlined
               sx={{ fontSize: "3rem" }}
               className="text-black dark:text-white hover:opacity-30 transition"

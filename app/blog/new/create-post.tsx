@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { AlternateEmailOutlined } from "@mui/icons-material";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
@@ -15,6 +15,10 @@ import {
 import { FIREBASE_STORE, FIREBASE_AUTH } from "@/FirebaseConfig";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.bubble.css";
+
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 const CreatePost = () => {
   const [postTitle, setPostTitle] = useState("");
@@ -106,7 +110,7 @@ const CreatePost = () => {
         )}
       </div>
 
-      <div className="mt-10 w-full border-b-2 flex flex-row ">
+      <div className="mt-10 w-full border-b-2 flex flex-row pl-3">
         <textarea
           placeholder="Title"
           className="placeholder:text-[#a5a5a6] font-semibold placeholder:text-[3rem] active:outline-none w-full text-[3rem] outline-none bg-white dark:bg-black resize-none overflow-hidden"
@@ -119,17 +123,13 @@ const CreatePost = () => {
           }}
         />
       </div>
-      <div className="mt-5 w-full">
-        <textarea
+      <div className="mt-3 w-full">
+        <ReactQuill
+          value={postContent}
+          onChange={setPostContent}
+          className="w-full"
           placeholder="Tell your story..."
-          className="placeholder:text-[#a5a5a6] placeholder:text-[1.5rem] active:outline-none w-full text-[1.5rem] font-normal outline-none bg-white dark:bg-black resize-none overflow-hidden"
-          onChange={(e) => setPostContent(e.target.value)}
-          rows={4}
-          onInput={(e) => {
-            const target = e.target as HTMLTextAreaElement;
-            target.style.height = "auto";
-            target.style.height = `${target.scrollHeight}px`;
-          }}
+          theme="bubble"
         />
       </div>
     </div>

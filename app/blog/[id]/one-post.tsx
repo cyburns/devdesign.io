@@ -5,6 +5,7 @@ import useGetPostById from "@/hooks/postHooks/useGetPostById";
 import Image from "next/image";
 import { defulatPfp } from "@/lib/data";
 import { estimateReadingTime, calculateElapsedTime } from "@/hooks/utils";
+import parse from "html-react-parser";
 
 const OnePost = ({ params }: any) => {
   const { isPostLoading, onePost } = useGetPostById(params.id);
@@ -44,7 +45,7 @@ const OnePost = ({ params }: any) => {
         {post.postTitle}
       </h1>
       <p className="text-black dark:text-white active:outline-none w-full text-[1rem] font-thin outline-none bg-white dark:bg-black resize-none overflow-hidden !leading-[1.5] mt-5">
-        {post.postContent}
+        {parse(post.postContent)}
       </p>
     </div>
   );

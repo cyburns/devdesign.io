@@ -349,3 +349,15 @@ header {
     font-size: 1.9rem;
   }
 }
+
+/* Quill Editor */
+
+.ql-editor::before {
+  font-size: 1.5rem !important; /* Customize placeholder text size */
+  color: #a5a5a6 !important; /* Customize placeholder text color if needed */
+}
+
+.ql-editor {
+  color: #000000 !important;
+  font-size: 1.5rem !important;  /* Customize placeholder text color if needed */
+}

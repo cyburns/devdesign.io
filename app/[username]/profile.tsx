@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
 import Image from "next/image";
 import UserPosts from "./user-posts";
+import { defulatPfp } from "@/lib/data";
 
 const Profile = () => {
   const auth = getAuth();
@@ -46,9 +47,6 @@ const Profile = () => {
   if (isUserLoading) {
     return <div>Loading...</div>;
   }
-
-  const defulatPfp =
-    "https://firebasestorage.googleapis.com/v0/b/seatr-416422.appspot.com/o/profile-pictures%2FzZlxE2oUvKYpgOgATRFrBZuewGm1?alt=media&token=75c9c254-e4e5-4cd4-963b-53227ef5a8ee";
 
   return (
     <div className="max-w-[50rem] w-full h-screen">

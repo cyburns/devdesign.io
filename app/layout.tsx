@@ -9,10 +9,14 @@ import ThemeSwitch from "@/components/home/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
-import { store } from "@/store/store";
-import { Provider } from "react-redux";
 
 const mont = Montserrat({ subsets: ["latin"] });
+export const metadata = {
+  title: "BRIGHT",
+  description: "Fast web development",
+  image: "https://example.com/image.jpg",
+  url: "https://example.com",
+};
 
 export default function RootLayout({
   children,
@@ -36,18 +40,15 @@ export default function RootLayout({
       <body
         className={`${mont.className} bg-white text-gray-950 relative  dark:bg-black dark:text-white dark:text-opacity-90`}
       >
-        <Provider store={store}>
-          <ThemeContextProvider>
-            <ActiveSectionContextProvider>
-              <Header />
-              {children}
-              <Footer />
-
-              <Toaster position="top-right" />
-              <ThemeSwitch />
-            </ActiveSectionContextProvider>
-          </ThemeContextProvider>
-        </Provider>
+        <ThemeContextProvider>
+          <ActiveSectionContextProvider>
+            <Header />
+            {children}
+            <Footer />
+            <Toaster position="top-right" />
+            <ThemeSwitch />
+          </ActiveSectionContextProvider>
+        </ThemeContextProvider>
       </body>
     </html>
   );
