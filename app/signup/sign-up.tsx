@@ -1,15 +1,11 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import Validator from "email-validator";
 import toast from "react-hot-toast";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import {
-  FIREBASE_AUTH,
-  FIREBASE_STORAGE,
-  FIREBASE_STORE,
-} from "@/FirebaseConfig";
+import { FIREBASE_AUTH, FIREBASE_STORE } from "@/FirebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -19,9 +15,8 @@ import {
   VisibilityOffOutlined,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useDispatch } from "react-redux";
-import { setIsFullyRegistered, setLogin, setNameAndUsername } from "@/store";
 import { useRouter } from "next/navigation";
+import useAuthStore from "@/store";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -34,9 +29,13 @@ const SignUp = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const submitButtonDisabled = isLogin
+    ? !email || !password
+    : !email || !fullName || !username || !password;
+
   const auth = FIREBASE_AUTH;
   const database = FIREBASE_STORE;
-  const dispatch = useDispatch();
+  const loginUser = useAuthStore((state) => state.login);
   const router = useRouter();
 
   const isLoadingSpinner = isLoading ? "pt-3" : "";
@@ -106,12 +105,8 @@ const SignUp = () => {
 
       router.push("/profile");
       toast.success("Account created successfully. Please verify your email.");
-      localStorage.setItem("user-auth", JSON.stringify(newAuthUser));
-      localStorage.setItem("user-data", JSON.stringify(userData));
 
-      dispatch(setLogin({ user: { id: newAuthUser.user.uid, email } }));
-      dispatch(setNameAndUsername({ user: { fullName, username } }));
-      dispatch(setIsFullyRegistered({ user: { isFullyRegistered: false } }));
+      loginUser(userData);
 
       setEmail("");
       setFullName("");
@@ -134,9 +129,12 @@ const SignUp = () => {
         const docRef = doc(database, "users", userCred.user.uid);
         const docSnap = await getDoc(docRef);
         const userData = docSnap.data();
+
+        loginUser(userData);
       }
 
       toast.success("Logged in successfully");
+      router.push("/profile");
     } catch (error) {
       console.error(error);
       toast.error("Error logging in. Please try again later.");
@@ -208,7 +206,7 @@ const SignUp = () => {
           aria-describedby={`tier-join-now`}
           className={`bg-[#0295f6] w-full text-white transition hover:bg-blue-500 mt-6 rounded-md py-2 px-3 text-center text-base font-medium leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-60 disabled:cursor-not-allowed max-h-[2.5rem]  flex justify-center items-center ${isLoadingSpinner}`}
           rel="noopener noreferrer "
-          disabled={!email || !fullName || !username || !password || isLoading}
+          disabled={submitButtonDisabled}
         >
           {isLoading ? (
             <div className="">

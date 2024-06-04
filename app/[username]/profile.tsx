@@ -1,19 +1,18 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { getAuth, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { setLogout } from "@/store";
 import { useRouter } from "next/navigation";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
 import Image from "next/image";
 import UserPosts from "./user-posts";
 import { defulatPfp } from "@/lib/data";
+import useAuthStore from "@/store";
 
 const Profile = () => {
   const auth = getAuth();
-  const dispatch = useDispatch();
+  const logoutUser = useAuthStore((state) => state.logout);
   const router = useRouter();
 
   const currentUser = auth.currentUser;
@@ -22,21 +21,10 @@ const Profile = () => {
     currentUser?.uid
   ) as any;
 
-  useEffect(() => {
-    if (!currentUser) return;
-
-    if (!currentUser) {
-      router.push("/signup");
-    }
-  }, [currentUser]);
-
   const handleLgout = async () => {
     try {
       await signOut(auth);
-      localStorage.removeItem("user-auth");
-      localStorage.removeItem("user-data");
-
-      dispatch(setLogout());
+      logoutUser();
       router.push("/");
     } catch (error) {
       console.log(error);

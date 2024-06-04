@@ -43,8 +43,6 @@ export default function Header() {
   const auth = getAuth();
   const currentUserId = auth.currentUser?.uid;
 
-  const { userProfile } = useGetUserById(currentUserId) as any;
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
       FIREBASE_AUTH,
@@ -52,10 +50,6 @@ export default function Header() {
         if (!user) {
           setPathName("signup");
           setProfilePath("Sign up");
-        } else {
-          setIsUser(user);
-          setPathName(`/${userProfile.username}`);
-          setProfilePath("Profile");
         }
       }
     );
@@ -63,9 +57,14 @@ export default function Header() {
     return () => unsubscribe();
   }, []);
 
+  const { userProfile, isUserLoading } = useGetUserById(currentUserId) as any;
+
   useEffect(() => {
-    console.log("USER ON HEADER --->", isUser, pathName);
-  }, [isUser]);
+    if (isUserLoading || !userProfile) return;
+
+    setPathName(`/${userProfile.username}`);
+    setProfilePath("Profile");
+  }, [isUser, isUserLoading]);
 
   const linkVariants = {
     hidden: { opacity: 0, x: -20 },
