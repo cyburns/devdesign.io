@@ -92,18 +92,18 @@ const CreatePost = () => {
             </span>
           </h1>
         </div>
-        <div className="bg-blue-500 rounded-md hover:opacity-40 transition">
-          <button
-            onClick={handlePost}
-            className="text-white px-5 py-2 font-medium "
-          >
-            {isLoading ? (
-              <CircularProgress size={40} className="text-white p-2" />
-            ) : (
-              "POST"
-            )}
-          </button>
-        </div>
+        {isLoading ? (
+          <CircularProgress size={40} className="text-blue-500 p-1" />
+        ) : (
+          <div className="bg-blue-500 rounded-md hover:opacity-40 transition">
+            <button
+              onClick={handlePost}
+              className="text-white px-5 py-2 font-medium "
+            >
+              POST
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="mt-10 w-full border-b-2 flex flex-row ">
