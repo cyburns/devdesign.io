@@ -4,9 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { links } from "@/lib/data";
 import Link from "next/link";
-import { User, onAuthStateChanged } from "firebase/auth";
+import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "@/FirebaseConfig";
-import { useRouter } from "next/navigation";
 import {
   HomeRounded,
   AlternateEmailOutlined,
@@ -20,6 +19,7 @@ import {
 import BrightLogo from "@/public/bright-app-icon-lg.png";
 import MobileHeader from "./mobile-header";
 import BrightText from "./bright-text";
+import useGetUserById from "@/hooks/userHooks/useGetUserById";
 
 const iconsArray = [
   <HomeRounded sx={{ fontSize: "2rem" }} key="icon1" />,
@@ -40,7 +40,10 @@ export default function Header() {
     "Profile"
   );
 
-  const router = useRouter();
+  const auth = getAuth();
+  const currentUserId = auth.currentUser?.uid;
+
+  const { userProfile } = useGetUserById(currentUserId) as any;
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
@@ -49,17 +52,20 @@ export default function Header() {
         if (!user) {
           setPathName("signup");
           setProfilePath("Sign up");
-          return;
+        } else {
+          setIsUser(user);
+          setPathName(`/${userProfile.username}`);
+          setProfilePath("Profile");
         }
-
-        setIsUser(user);
-        setPathName("profile");
-        setProfilePath("Profile");
       }
     );
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    console.log("USER ON HEADER --->", isUser, pathName);
+  }, [isUser]);
 
   const linkVariants = {
     hidden: { opacity: 0, x: -20 },

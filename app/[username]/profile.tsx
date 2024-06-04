@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogout } from "@/store";
 import { useRouter } from "next/navigation";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
 import Image from "next/image";
+import UserPosts from "./user-posts";
 
 const Profile = () => {
   const auth = getAuth();
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const localStorageUser = localStorage.getItem("userInfo");
-  const reduxUser = useSelector((state: any) => state.user);
   const currentUser = auth.currentUser;
 
   const { isUserLoading, userProfile } = useGetUserById(
@@ -28,7 +27,7 @@ const Profile = () => {
     if (!currentUser) {
       router.push("/signup");
     }
-  }, [localStorageUser, currentUser, reduxUser]);
+  }, [currentUser]);
 
   const handleLgout = async () => {
     try {
@@ -77,6 +76,8 @@ const Profile = () => {
           Posts
         </h2>
       </div>
+
+      <UserPosts />
     </div>
   );
 };

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AlternateEmailOutlined } from "@mui/icons-material";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
 import toast from "react-hot-toast";
 import {
@@ -12,7 +12,7 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { FIREBASE_STORE } from "@/FirebaseConfig";
+import { FIREBASE_STORE, FIREBASE_AUTH } from "@/FirebaseConfig";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/navigation";
 
@@ -25,6 +25,16 @@ const CreatePost = () => {
   const router = useRouter();
   const currentUser = auth.currentUser;
   const database = FIREBASE_STORE;
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      if (!user) {
+        router.push("/signup");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const { isUserLoading, userProfile } = useGetUserById(
     currentUser?.uid
