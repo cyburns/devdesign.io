@@ -1,13 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getAuth, signOut } from "firebase/auth";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { getAuth } from "firebase/auth";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
 import Image from "next/image";
 import { defulatPfp } from "@/lib/data";
-import useAuthStore from "@/store";
 import { Skeleton } from "@mui/material";
 import { IoCreateOutline } from "react-icons/io5";
 import Link from "next/link";
