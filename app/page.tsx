@@ -1,5 +1,6 @@
 import About from "@/components/home/about";
 import Contact from "@/components/home/contact";
+import Footer from "@/components/home/footer";
 import InfiniteWords from "@/components/home/infinite";
 import Intro from "@/components/home/intro";
 import Payment from "@/components/home/payment";
@@ -20,6 +21,7 @@ export default function Home() {
       <Payment />
       <Reviews />
       <Contact />
+      <Footer />
     </main>
   );
 }
