@@ -144,7 +144,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="flex justify-center items-center pt-10">
+    <section className="flex justify-center items-center pt-32 sm:pt-10">
       <div className="flex flex-col w-full justify-center items-center max-w-xs">
         <h1 className="text-[3rem] sm:text-[5rem] font-thin">
           <span className="hero-gradient-text">BRIGHT</span>

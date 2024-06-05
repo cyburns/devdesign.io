@@ -7,7 +7,10 @@ const PostSkeleton = () => {
   return (
     <>
       {fakePostsArray.map((_, index) => (
-        <div key={index} className="mt-10 p-3 pb-7 border-b-2">
+        <div
+          key={index}
+          className="mt-10 p-3 pb-7 border-b-2 border-[#EFEFEF] dark:border-[#161616]"
+        >
           <div className="flex flex-row items-center justify-between mb-7 w-full">
             <div className="flex flex-row">
               <Skeleton
@@ -15,6 +18,7 @@ const PostSkeleton = () => {
                 height={50}
                 animation="wave"
                 variant="circular"
+                className="bg-[#EFEFEF] dark:bg-[#161616]"
               />
               <div className="ml-3">
                 <div className="flex flex-row">
@@ -24,7 +28,7 @@ const PostSkeleton = () => {
                       height={15}
                       animation="wave"
                       variant="rectangular"
-                      className="rounded-sm"
+                      className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616]"
                     />
                   </h2>
                 </div>
@@ -34,7 +38,7 @@ const PostSkeleton = () => {
                     height={15}
                     animation="wave"
                     variant="rectangular"
-                    className="rounded-sm"
+                    className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] "
                   />
                 </h2>
               </div>
@@ -46,7 +50,7 @@ const PostSkeleton = () => {
               height={55}
               animation="wave"
               variant="rectangular"
-              className="rounded-sm"
+              className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616]"
             />
           </div>
           <div className="text-black dark:text-white w-full text-[1rem] font-thin outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
@@ -55,21 +59,21 @@ const PostSkeleton = () => {
               height={15}
               animation="wave"
               variant="rectangular"
-              className="rounded-sm mt-2"
+              className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-2"
             />
             <Skeleton
               width={"50%"}
               height={15}
               animation="wave"
               variant="rectangular"
-              className="rounded-sm mt-2"
+              className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-2"
             />
             <Skeleton
               width={"60%"}
               height={15}
               animation="wave"
               variant="rectangular"
-              className="rounded-sm mt-2"
+              className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-2"
             />
           </div>
         </div>

@@ -102,13 +102,13 @@ const Profile = () => {
   return (
     <>
       {isUserLoading || isUsersPostsLoading || !userProfile ? (
-        <div className="max-w-[50rem] w-full flex flex-col h-screen">
+        <div className="max-w-[40rem] w-full flex flex-col h-screen">
           <ProfileSkeleton />
           <PostSkeleton />
         </div>
       ) : (
-        <div className="max-w-[50rem] w-full h-screen p-2 mt-10 sm:mt-1">
-          <div className="max-w-[50rem] w-full flex items-center justify-between pt-10">
+        <div className="max-w-[40rem] w-full h-screen p-2 mt-10 sm:mt-1 mb-10">
+          <div className="max-w-[40rem] w-full flex items-center justify-between pt-10">
             <div className="flex flex-col sm:flex-row">
               <Image
                 onClick={() => pickerRef.current.click()}
@@ -154,13 +154,13 @@ const Profile = () => {
           <div className="mt-4 w-full flex flex-row justify-around">
             <button
               onClick={() => pickerRef.current.click()}
-              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-1 hover:bg-opacity-40 transition"
+              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-2 hover:bg-opacity-40 dark:hover:bg-[#343434] transition"
             >
               Edit profile
             </button>
             <button
               onClick={handleCopy}
-              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-1 hover:bg-opacity-40 transition"
+              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-2 hover:bg-opacity-40 dark:hover:bg-[#343434] transition"
             >
               Share profile
             </button>

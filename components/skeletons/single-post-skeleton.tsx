@@ -20,6 +20,7 @@ const SinglePostSkeleton = () => {
               height={50}
               animation="wave"
               variant="circular"
+              className="bg-[#EFEFEF] dark:bg-[#161616]"
             />
             <div className="ml-3">
               <div className="flex flex-row">
@@ -29,7 +30,7 @@ const SinglePostSkeleton = () => {
                     height={15}
                     animation="wave"
                     variant="rectangular"
-                    className="rounded-sm"
+                    className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616]"
                   />
                 </h2>
               </div>
@@ -39,7 +40,7 @@ const SinglePostSkeleton = () => {
                   height={15}
                   animation="wave"
                   variant="rectangular"
-                  className="rounded-sm"
+                  className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616]"
                 />
               </h2>
             </div>
@@ -51,7 +52,7 @@ const SinglePostSkeleton = () => {
             height={55}
             animation="wave"
             variant="rectangular"
-            className="rounded-sm"
+            className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616]"
           />
         </div>
         <div className="text-black dark:text-white w-full text-[1rem] font-thin outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
@@ -62,21 +63,21 @@ const SinglePostSkeleton = () => {
                 height={15}
                 animation="wave"
                 variant="rectangular"
-                className="rounded-sm mt-2"
+                className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-2"
               />
               <Skeleton
                 width={Math.random() * 80 + 20 + "%"}
                 height={15}
                 animation="wave"
                 variant="rectangular"
-                className="rounded-sm mt-2"
+                className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-2"
               />
               <Skeleton
                 width={Math.random() * 80 + 20 + "%"}
                 height={15}
                 animation="wave"
                 variant="rectangular"
-                className="rounded-sm mt-2"
+                className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-2"
               />
             </span>
           ))}

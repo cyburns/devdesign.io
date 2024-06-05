@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "@/components/post/post";;
+import Post from "@/components/post/post";
 
 const UserPosts = ({ usersPosts }: any) => {
   return (
@@ -7,6 +7,7 @@ const UserPosts = ({ usersPosts }: any) => {
       {usersPosts.map((post: any, index: number) => (
         <Post post={post} isSinglePost={false} key={index} />
       ))}
+      <div className="h-32 w-full" />
     </div>
   );
 };
