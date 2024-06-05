@@ -45,7 +45,13 @@ const CreatePost = () => {
   ) as any;
 
   const handlePost = async () => {
-    if (!postTitle || !postContent) {
+    if (
+      !postTitle ||
+      !postContent ||
+      !currentUser ||
+      !userProfile ||
+      isUserLoading
+    ) {
       toast.error("Please fill in all fields.");
       return;
     }
@@ -84,6 +90,10 @@ const CreatePost = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log(postContent, postTitle, userProfile);
+  }, [postContent, postTitle, userProfile]);
 
   return (
     <div className="max-w-[50rem] h-screen w-full mb-10 pt-10">

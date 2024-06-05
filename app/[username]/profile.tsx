@@ -11,7 +11,7 @@ import { defulatPfp } from "@/lib/data";
 import useAuthStore from "@/store";
 import { Verified } from "@mui/icons-material";
 import { FIREBASE_STORAGE, FIREBASE_STORE } from "@/FirebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Profile = () => {
@@ -75,7 +75,9 @@ const Profile = () => {
         );
         await uploadString(storageRef, imageData, "data_url");
         const url = await getDownloadURL(storageRef);
-        await setDoc(doc(database, "users", auth.currentUser.uid), {
+        const userDocRef = doc(database, "users", auth.currentUser.uid);
+
+        await updateDoc(userDocRef, {
           profilePicture: url,
         });
       }
@@ -114,12 +116,14 @@ const Profile = () => {
             </h1>
             <h1 className="text-xl text-[#a5a5a6]">{userProfile.username}</h1>
           </div>
-          <div className="mt-[0.6rem] ml-2">
-            <Verified
-              className="text-[#0295f6] text-3xl"
-              sx={{ fontSize: "1rem" }}
-            />
-          </div>
+          {userProfile.isVerified && (
+            <div className="mt-[0.6rem] ml-2">
+              <Verified
+                className="text-[#0295f6] text-3xl"
+                sx={{ fontSize: "1rem" }}
+              />
+            </div>
+          )}
         </div>
         <button onClick={handleLgout}>
           <span className="text-[#a5a5a6] hover:underline">Log out</span>
