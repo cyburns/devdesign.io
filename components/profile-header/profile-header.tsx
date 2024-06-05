@@ -39,7 +39,7 @@ export default function ProfileHeader() {
     );
 
   return (
-    <button className="fixed top-5 right-[1rem] flex items-center justify-center transition-all dark:bg-gray-950 ">
+    <button className="fixed top-5 right-[1rem] flex items-center justify-center transition-all ">
       <Link
         href={"/blog/new"}
         className="flex flex-row hover:text-black dark:hover:text-white"
@@ -47,13 +47,13 @@ export default function ProfileHeader() {
         <IoCreateOutline className="text-[#a3a3a7] text-2xl mr-1 " />
         <h1 className="text-[#a3a3a7] mr-7">Write</h1>
       </Link>
-      <Link href={`${userProfile.username}`}>
+      <Link href={`${userProfile.username}`} className="gradient-sm">
         <Image
           src={userProfile.profilePicture || defulatPfp}
           alt="profile picture"
-          width={40}
-          height={40}
-          className="rounded-full cursor-pointer"
+          width={30}
+          height={30}
+          className="rounded-full cursor-pointer image-sm"
         />
       </Link>
     </button>

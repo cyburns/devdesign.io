@@ -5,11 +5,12 @@ import { defulatPfp } from "@/lib/data";
 import { estimateReadingTime, calculateElapsedTime } from "@/hooks/utils";
 import parse from "html-react-parser";
 import { Verified } from "@mui/icons-material";
+import Buttons from "./buttons";
 
 const Post = ({ post, isSinglePost }: any) => {
   return (
-    <Link key={post.id} href={`/blog/${post.id}`} className="border-b-2">
-      <div className="mt-10 p-3">
+    <div className="mt-10 p-3 border-[#EFEFEF] dark:border-[#161616] border-b-2">
+      <Link key={post.id} href={`/blog/${post.id}`}>
         <div className="flex flex-row items-center justify-between mb-7 w-full">
           <div className="flex flex-row">
             <Image
@@ -41,16 +42,28 @@ const Post = ({ post, isSinglePost }: any) => {
             </h2>
           </div>
         </div>
-        <h1 className="text-black dark:text-white font-semibold text-[2rem] active:outline-none w-full outline-none bg-white dark:bg-black resize-none overflow-hidden !leading-[1.2]">
+        {isSinglePost && (
+          <div className="border-[#EFEFEF] dark:border-[#161616] border-b-2 border-t-2 mb-5 p-1">
+            <Buttons post={post} />
+          </div>
+        )}
+        <div className="text-black dark:text-white font-semibold text-[2rem] w-full bg-white dark:bg-black !leading-[1.2]">
           {post.postTitle}
-        </h1>
-        <p className="text-black dark:text-white active:outline-none w-full text-[1rem] font-thin outline-none bg-white dark:bg-black resize-none overflow-hidden !leading-[1.5] mt-5">
-          {isSinglePost
-            ? parse(post.postContent)
-            : parse(post.postContent.substring(0, 200).trim() + "...")}
-        </p>
-      </div>
-    </Link>
+        </div>
+        <div className="text-black dark:text-white w-full text-[1rem] font-thin outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
+          <span className="text-black dark:text-white ">
+            {isSinglePost
+              ? parse(post.postContent)
+              : parse(post.postContent.substring(0, 200).trim() + "...")}
+          </span>
+        </div>
+      </Link>
+      {!isSinglePost && (
+        <div className="mt-3 mb-1">
+          <Buttons post={post} />
+        </div>
+      )}
+    </div>
   );
 };
 

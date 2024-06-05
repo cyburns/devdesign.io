@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { AlternateEmailOutlined } from "@mui/icons-material";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
@@ -70,6 +70,7 @@ const CreatePost = () => {
           createdBy: currentUser.uid,
           postTitle,
           postContent,
+          isCreatorVerified: userProfile.isVerified || false,
         };
 
         const postDocRef = await addDoc(
@@ -91,16 +92,41 @@ const CreatePost = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(postContent, postTitle, userProfile);
-  }, [postContent, postTitle, userProfile]);
+  const quillModules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }],
+      [{ font: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline", "blockquote"],
+      [{ align: [] }],
+      ["link", "image"],
+      ["clean"],
+    ],
+    clipboard: {
+      matchVisual: false,
+    },
+  };
+
+  const quillFormats = [
+    "header",
+    "font",
+    "list",
+    "bullet",
+    "bold",
+    "italic",
+    "underline",
+    "blockquote",
+    "align",
+    "link",
+    "image",
+  ];
 
   return (
-    <div className="max-w-[50rem] h-screen w-full mb-10 pt-10">
+    <div className="max-w-[50rem] h-screen w-full mt-32 sm:mt-5 mb-10 pt-10">
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
           <AlternateEmailOutlined sx={{ fontSize: "2.5rem" }} />
-          <h1 className="text-[2rem] font-medium !leading-[1] ">
+          <h1 className=" text-[1.5rem] sm:text-[2rem] font-medium !leading-[1] ">
             <span className="font-semibold uppercase">
               <span className="hero-gradient-text px-2">BRIGHT</span>blog
             </span>
@@ -133,13 +159,15 @@ const CreatePost = () => {
           }}
         />
       </div>
-      <div className="mt-3 w-full">
+      <div className="mt-3 w-full text-black dark:text-white">
         <ReactQuill
           value={postContent}
           onChange={setPostContent}
           className="w-full"
           placeholder="Tell your story..."
           theme="bubble"
+          modules={quillModules}
+          formats={quillFormats}
         />
       </div>
     </div>

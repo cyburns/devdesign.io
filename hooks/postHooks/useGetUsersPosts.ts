@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { FIREBASE_STORE } from "@/FirebaseConfig";
 
-const useGetUsersPosts = (userId: string) => {
+const useGetUsersPosts = (userId: any) => {
   const [isUsersPostsLoading, setUsersPostsIsLoading] = useState<boolean>(true);
   const [usersPosts, setUsersPosts] = useState<any[]>([]);
   const [isLastPost, setIsLastPost] = useState<boolean>(false);

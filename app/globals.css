@@ -69,6 +69,19 @@ html.dark {
   background-color: white;
 }
 
+.gradient-sm {
+  border-radius: 50%;
+  background: linear-gradient(to right, #f37a1d, #d12873, #932cba);
+  padding: 2.5px;
+}
+
+.image-sm {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: white;
+}
+
 /* NEW NAV BAR */
 
 .page-section {
@@ -358,6 +371,5 @@ header {
 }
 
 .ql-editor {
-  color: #000000 !important;
   font-size: 1.5rem !important; /* Customize placeholder text color if needed */
 }

@@ -6,29 +6,27 @@ import { links } from "@/lib/data";
 import Link from "next/link";
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "@/FirebaseConfig";
-import {
-  HomeRounded,
-  AlternateEmailOutlined,
-  SearchRounded,
-  AddBoxOutlined,
-  MapsUgcOutlined,
-  CreditCardOutlined,
-  ExploreOutlined,
-  AccountCircleOutlined,
-} from "@mui/icons-material";
 import BrightLogo from "@/public/bright-app-icon-lg.png";
 import MobileHeader from "./mobile-header";
 import BrightText from "./bright-text";
 import useGetUserById from "@/hooks/userHooks/useGetUserById";
+import { GoHomeFill } from "react-icons/go";
+import { FiAtSign } from "react-icons/fi";
+import { IoIosSearch } from "react-icons/io";
+import { IoCompassOutline } from "react-icons/io5";
+import { GoPlusCircle } from "react-icons/go";
+import { IoPricetagsOutline } from "react-icons/io5";
+import { LuMessageCircle } from "react-icons/lu";
+import { CgProfile } from "react-icons/cg";
 
-const iconsArray = [
-  <HomeRounded sx={{ fontSize: "2rem" }} key="icon1" />,
-  <AlternateEmailOutlined sx={{ fontSize: "2rem" }} key="icon6" />,
-  <SearchRounded sx={{ fontSize: "2rem" }} key="icon2" />,
-  <ExploreOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
-  <AddBoxOutlined sx={{ fontSize: "2rem" }} key="icon3" />,
-  <CreditCardOutlined sx={{ fontSize: "2rem" }} key="icon5" />,
-  <MapsUgcOutlined sx={{ fontSize: "2rem" }} key="icon4" />,
+const iconsArrayTwo = [
+  <GoHomeFill key="icon1" className="text-[2rem]" />,
+  <FiAtSign key="icon6" className="text-[2rem]" />,
+  <IoIosSearch key="icon2" className="text-[2rem]" />,
+  <IoCompassOutline key="icon5" className="text-[2rem]" />,
+  <GoPlusCircle key="icon3" className="text-[2rem]" />,
+  <IoPricetagsOutline key="icon5" className="text-[2rem]" />,
+  <LuMessageCircle key="icon4" className="text-[2rem]" />,
 ];
 
 export default function Header() {
@@ -92,8 +90,8 @@ export default function Header() {
                     className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all"
                     key={index}
                   >
-                    <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
-                      {iconsArray[index]}
+                    <span className="mr-3 text-black dark:text-white ">
+                      {iconsArrayTwo[index]}
                     </span>
                     <AnimatePresence>
                       {isNavOpen && (
@@ -103,7 +101,7 @@ export default function Header() {
                           exit="hidden"
                           variants={linkVariants}
                           transition={{ duration: 0.3 }}
-                          className="text-black dark:text-white text-lg  font-thin"
+                          className="text-black dark:text-white text-lg  font-thin "
                         >
                           {link.name}
                         </motion.span>
@@ -115,8 +113,8 @@ export default function Header() {
 
               <Link href={pathName}>
                 <li className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all">
-                  <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
-                    <AccountCircleOutlined sx={{ fontSize: "2rem" }} />
+                  <span className="mr-3 text-black dark:text-white">
+                    <CgProfile className="text-[2rem]" />
                   </span>
                   <AnimatePresence>
                     {isNavOpen && (
@@ -142,7 +140,7 @@ export default function Header() {
       <MobileHeader
         isMobileMenuOpen={isMobileMenuOpen}
         links={links}
-        iconsArray={iconsArray}
+        iconsArrayTwo={iconsArrayTwo}
         toggleMobileMenu={toggleMobileMenu}
         BrightLogo={BrightLogo}
       />

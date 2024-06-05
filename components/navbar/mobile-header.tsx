@@ -5,7 +5,7 @@ import Link from "next/link";
 const MobileHeader = ({
   isMobileMenuOpen,
   links,
-  iconsArray,
+  iconsArrayTwo,
   toggleMobileMenu,
   BrightLogo,
 }: any) => {
@@ -28,7 +28,7 @@ const MobileHeader = ({
                   key={index}
                 >
                   <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
-                    {iconsArray[index]}
+                    {iconsArrayTwo[index]}
                   </span>
 
                   <Link
