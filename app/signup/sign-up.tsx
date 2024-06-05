@@ -26,6 +26,7 @@ const SignUp = () => {
   const [isSecureTextEntry, setSecureTextEntry] = useState(true);
   const [isValidEmail, setIsValidEmail] = useState<null | string>(null);
   const [isValidPassword, setIsValidPassword] = useState<null | string>(null);
+  const [isValidUsername, setIsValidUsername] = useState<null | string>(null);
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -74,8 +75,20 @@ const SignUp = () => {
 
     setIsValidEmail(null);
     setIsValidPassword(null);
+    validateUsername();
+  };
+
+  const validateUsername = () => {
+    if (/[A-Z]/.test(username)) {
+      setIsValidUsername("Username cannot contain uppercase letters");
+      return false;
+    }
+    if (/\s/.test(username)) {
+      setIsValidUsername("Username cannot contain spaces");
+      return false;
+    }
+    setIsValidUsername(null);
     isLogin ? login() : signUp();
-    return;
   };
 
   const signUp = async () => {
@@ -99,6 +112,7 @@ const SignUp = () => {
         userId: newAuthUser.user.uid,
         email,
         createdAt: new Date(),
+        isVerified: false,
         fullName,
         username,
       };
@@ -176,6 +190,7 @@ const SignUp = () => {
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
+            <p className="text-red-500 text-xs">{isValidUsername}</p>
           </>
         )}
         <div className="relative flex w-full">

@@ -140,10 +140,12 @@ const Profile = () => {
                 <h2 className="text-xl text-[#a5a5a6] mt-1">
                   {userProfile.username}
                 </h2>
-                <h3 className="text-black dark:text-white text-xl font-medium mt-1">
-                  {userProfile.posts.length}{" "}
-                  {userProfile.posts.length > 1 ? "posts" : "post"}
-                </h3>
+                {usersPosts.length > 0 && usersPosts && (
+                  <h3 className="text-black dark:text-white text-xl font-medium mt-1">
+                    {userProfile.posts.length}{" "}
+                    {userProfile.posts.length > 1 ? "posts" : "post"}
+                  </h3>
+                )}
               </div>
             </div>
             <button onClick={handleLgout}>
@@ -170,7 +172,7 @@ const Profile = () => {
               Posts
             </h2>
           </div>
-          {usersPosts.length > 0 ? (
+          {usersPosts.length > 0 && usersPosts ? (
             <UserPosts usersPosts={usersPosts} />
           ) : (
             <div className="mt-5 w-full flex flex-col items-center justify-center">
