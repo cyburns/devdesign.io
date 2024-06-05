@@ -113,7 +113,7 @@ export default function Header() {
 
               <Link href={pathName}>
                 <li className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer p-3 rounded-lg group/item transition-all">
-                  <span className="mr-3 text-black dark:text-white">
+                  <span className="mr-3 text-black dark:text-white ">
                     <CgProfile className="text-[2rem]" />
                   </span>
                   <AnimatePresence>
@@ -143,6 +143,8 @@ export default function Header() {
         iconsArrayTwo={iconsArrayTwo}
         toggleMobileMenu={toggleMobileMenu}
         BrightLogo={BrightLogo}
+        pathName={pathName}
+        profilePath={profilePath}
       />
     </div>
   );

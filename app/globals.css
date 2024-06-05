@@ -203,7 +203,7 @@ header {
 
   .nav-item {
     width: 4.8rem;
-    height: 4.8rem;
+    height: 4rem;
     display: flex;
     justify-content: center;
   }
@@ -222,6 +222,7 @@ header {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    margin-top: 0.5rem;
   }
 
   .line {

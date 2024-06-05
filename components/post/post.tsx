@@ -50,7 +50,7 @@ const Post = ({ post, isSinglePost }: any) => {
         <div className="text-black dark:text-white font-semibold text-[2rem] w-full bg-white dark:bg-black !leading-[1.2]">
           {post.postTitle}
         </div>
-        <div className="text-black dark:text-white w-full text-[1rem] font-thin outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
+        <div className="text-black dark:text-white w-full text-[1rem] font-base outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
           <span className="text-black dark:text-white ">
             {isSinglePost
               ? parse(post.postContent)
