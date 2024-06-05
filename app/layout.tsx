@@ -7,6 +7,7 @@ import ThemeSwitch from "@/components/home/theme-switch";
 import ThemeContextProvider from "@/context/theme-context";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
+import ProfileHeader from "@/components/profile-header/profile-header";
 
 const mont = Montserrat({ subsets: ["latin"] });
 export const metadata = {
@@ -42,8 +43,8 @@ export default function RootLayout({
           <ActiveSectionContextProvider>
             <Header />
             {children}
-            <Footer />
             <Toaster position="top-right" />
+            <ProfileHeader />
             <ThemeSwitch />
           </ActiveSectionContextProvider>
         </ThemeContextProvider>

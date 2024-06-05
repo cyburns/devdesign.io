@@ -4,6 +4,7 @@ import Image from "next/image";
 import { defulatPfp } from "@/lib/data";
 import { estimateReadingTime, calculateElapsedTime } from "@/hooks/utils";
 import parse from "html-react-parser";
+import { Verified } from "@mui/icons-material";
 
 const Post = ({ post, isSinglePost }: any) => {
   return (
@@ -12,15 +13,23 @@ const Post = ({ post, isSinglePost }: any) => {
         <div className="flex flex-row items-center justify-between mb-7 w-full">
           <div className="flex flex-row">
             <Image
-              src={post.profilePicture || defulatPfp}
+              src={post.userProfilePicture || defulatPfp}
               alt="profile picture"
               width={50}
               height={50}
+              className="rounded-full"
             />
             <div className="ml-3">
-              <h2 className="text-black dark:text-white font-medium">
-                {post.username}
-              </h2>
+              <div className="flex flex-row">
+                <h2 className="text-black dark:text-white font-medium">
+                  {post.username}
+                </h2>
+                {post.isCreatorVerified && (
+                  <div className="ml-1">
+                    <Verified className="text-[#0295f6] text-lg mb-1" />
+                  </div>
+                )}
+              </div>
               <h2 className="text-[#a5a5a6] font-normal">
                 {estimateReadingTime(post.postContent)} min read
               </h2>
