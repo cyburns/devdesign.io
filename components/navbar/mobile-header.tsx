@@ -27,14 +27,12 @@ const MobileHeader = ({
             <ul className="nav-list nav-list-larger">
               {links.map((link: any, index: number) => (
                 <Link
+                  key={index}
                   href={link.link}
                   onClick={() => toggleMobileMenu(!isMobileMenuOpen)}
                   className="text-black dark:text-white text-lg font-thin"
                 >
-                  <li
-                    className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer rounded-lg group/item transition-all nav-item text-black dark:text-white"
-                    key={index}
-                  >
+                  <li className="flex items-center flex-row hover:bg-[#EFEFEF] hover:dark:bg-[#161616] hover:cursor-pointer rounded-lg group/item transition-all nav-item text-black dark:text-white">
                     <span className="mr-3 text-black dark:text-white group-hover/item:scale-110 transition">
                       {iconsArrayTwo[index]}
                     </span>
