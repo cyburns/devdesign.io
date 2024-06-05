@@ -34,7 +34,7 @@ export default function Header() {
   const [pathName, setPathName] = useState<string>("signup");
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [isMobileMenuOpen, toggleMobileMenu] = useState(false);
-  const [profilePath, setProfilePath] = useState<"Profile" | "Sign up">(
+  const [profilePath, setProfilePath] = useState<"Profile" | "Signup">(
     "Profile"
   );
 
@@ -47,7 +47,7 @@ export default function Header() {
       (user: User | null) => {
         if (!user) {
           setPathName("signup");
-          setProfilePath("Sign up");
+          setProfilePath("Signup");
         }
       }
     );
