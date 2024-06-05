@@ -154,13 +154,13 @@ const Profile = () => {
           <div className="mt-4 w-full flex flex-row justify-around">
             <button
               onClick={() => pickerRef.current.click()}
-              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-2 hover:bg-opacity-40 transition"
+              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-2 hover:bg-opacity-40 dark:hover:bg-[#343434] transition"
             >
               Edit profile
             </button>
             <button
               onClick={handleCopy}
-              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-2 hover:bg-opacity-40 transition"
+              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-2 hover:bg-opacity-40 dark:hover:bg-[#343434] transition"
             >
               Share profile
             </button>

@@ -11,6 +11,7 @@ const ProfileSkeleton = () => {
             height={110}
             animation="wave"
             variant="circular"
+            className="bg-[#EFEFEF] dark:bg-[#161616]"
           />
           <div className="flex flex-col mt-4 sm:mt-0 sm:ml-5 justify-center">
             <h1 className="text-3xl text-black dark:text-white capitalize">
@@ -19,7 +20,7 @@ const ProfileSkeleton = () => {
                 height={25}
                 animation="wave"
                 variant="rectangular"
-                className="rounded-sm"
+                className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616]"
               />
             </h1>
             <h2 className="text-xl text-[#a5a5a6] mt-1">
@@ -28,7 +29,7 @@ const ProfileSkeleton = () => {
                 height={15}
                 animation="wave"
                 variant="rectangular"
-                className="rounded-sm mt-4"
+                className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-4"
               />
             </h2>
             <h3 className="text-black dark:text-white text-xl font-medium mt-1">
@@ -37,7 +38,7 @@ const ProfileSkeleton = () => {
                 height={15}
                 animation="wave"
                 variant="rectangular"
-                className="rounded-sm mt-4"
+                className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] mt-4"
               />
             </h3>
           </div>
@@ -49,13 +50,13 @@ const ProfileSkeleton = () => {
           height={35}
           animation="wave"
           variant="rectangular"
-          className="rounded-sm w-full m-1"
+          className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] w-full m-1"
         />
         <Skeleton
           height={35}
           animation="wave"
           variant="rectangular"
-          className="rounded-sm w-full m-1"
+          className="rounded-sm bg-[#EFEFEF] dark:bg-[#161616] w-full m-1"
         />
       </div>
     </div>
