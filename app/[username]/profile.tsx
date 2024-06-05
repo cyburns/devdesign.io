@@ -13,6 +13,9 @@ import { Verified } from "@mui/icons-material";
 import { FIREBASE_STORAGE, FIREBASE_STORE } from "@/FirebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import useGetUsersPosts from "@/hooks/postHooks/useGetUsersPosts";
+import ProfileSkeleton from "@/components/skeletons/profile-skeleton";
+import PostSkeleton from "@/components/skeletons/post-skeleton";
 
 const Profile = () => {
   const [isImageLoading, setIsImageLoading] = useState(false);
@@ -26,6 +29,9 @@ const Profile = () => {
   const currentUser = auth.currentUser;
   const logoutUser = useAuthStore((state) => state.logout);
 
+  const { isUsersPostsLoading, usersPosts } = useGetUsersPosts(
+    currentUser?.uid
+  ) as any;
   const { isUserLoading, userProfile } = useGetUserById(
     currentUser?.uid
   ) as any;
@@ -87,56 +93,88 @@ const Profile = () => {
     }
   };
 
-  if (isUserLoading || !userProfile) {
-    return <div>Loading...</div>;
-  }
+  const handleCopy = () => {
+    navigator.clipboard.writeText(
+      `https://www.brightdev.dev/${userProfile.username}`
+    );
+  };
 
   return (
-    <div className="max-w-[50rem] w-full h-screen">
-      <div className="max-w-[50rem] w-full flex items-center justify-between pt-10">
-        <div className="flex flex-row">
-          <Image
-            onClick={() => pickerRef.current.click()}
-            src={userProfile.profilePicture || defulatPfp}
-            alt="profile picture"
-            width={75}
-            height={75}
-            className="rounded-full hover:opacity-40 transition-all cursor-pointer"
-          />
-          <input
-            ref={pickerRef}
-            onChange={(e) => onCaptureImage(e)}
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            hidden
-          />
-          <div className="flex flex-col ml-5 justify-center">
-            <h1 className="text-3xl text-black dark:text-white capitalize">
-              {userProfile.fullName}
-            </h1>
-            <h1 className="text-xl text-[#a5a5a6]">{userProfile.username}</h1>
-          </div>
-          {userProfile.isVerified && (
-            <div className="mt-[0.6rem] ml-2">
-              <Verified
-                className="text-[#0295f6] text-3xl"
-                sx={{ fontSize: "1rem" }}
-              />
-            </div>
-          )}
+    <>
+      {isUserLoading || isUsersPostsLoading || !userProfile ? (
+        <div className="max-w-[50rem] w-full flex flex-col h-screen">
+          <ProfileSkeleton />
+          <PostSkeleton />
         </div>
-        <button onClick={handleLgout}>
-          <span className="text-[#a5a5a6] hover:underline">Log out</span>
-        </button>
-      </div>
-      <div className="mt-10 w-full border-b-2 pb-2">
-        <h2 className="text-black dark:text-white text-xl font-medium">
-          Posts
-        </h2>
-      </div>
+      ) : (
+        <div className="max-w-[50rem] w-full h-screen p-2 mt-10 sm:mt-1">
+          <div className="max-w-[50rem] w-full flex items-center justify-between pt-10">
+            <div className="flex flex-col sm:flex-row">
+              <Image
+                onClick={() => pickerRef.current.click()}
+                src={userProfile.profilePicture || defulatPfp}
+                alt="profile picture"
+                width={110}
+                height={110}
+                className="rounded-full hover:opacity-40 transition-all cursor-pointer"
+              />
+              <input
+                ref={pickerRef}
+                onChange={(e) => onCaptureImage(e)}
+                type="file"
+                accept=".png, .jpg, .jpeg"
+                hidden
+              />
+              <div className="flex flex-col mt-4 sm:mt-0 sm:ml-5 justify-center">
+                <h1 className="text-3xl text-black dark:text-white capitalize">
+                  {userProfile.fullName}
+                  {userProfile.isVerified && (
+                    <span className="mt-[0.7rem] ml-2">
+                      <Verified
+                        className="text-[#0295f6] text-3xl"
+                        sx={{ fontSize: "1.5rem" }}
+                      />
+                    </span>
+                  )}
+                </h1>
+                <h2 className="text-xl text-[#a5a5a6] mt-1">
+                  {userProfile.username}
+                </h2>
+                <h3 className="text-black dark:text-white text-xl font-medium mt-1">
+                  {userProfile.posts.length}{" "}
+                  {userProfile.posts.length > 1 ? "posts" : "post"}
+                </h3>
+              </div>
+            </div>
+            <button onClick={handleLgout}>
+              <span className="text-[#a5a5a6] hover:underline">Log out</span>
+            </button>
+          </div>
 
-      <UserPosts />
-    </div>
+          <div className="mt-4 w-full flex flex-row justify-around">
+            <button
+              onClick={() => pickerRef.current.click()}
+              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-1 hover:bg-opacity-40 transition"
+            >
+              Edit profile
+            </button>
+            <button
+              onClick={handleCopy}
+              className="text-black dark:text-white text-base font-medium bg-[#EFEFEF] dark:bg-[#161616] w-full mx-1 rounded-lg p-1 hover:bg-opacity-40 transition"
+            >
+              Share profile
+            </button>
+          </div>
+          <div className="mt-10 w-full border-b-2 pb-2">
+            <h2 className="text-black dark:text-white text-xl font-medium">
+              Posts
+            </h2>
+          </div>
+
+          <UserPosts usersPosts={usersPosts} />
+        </div>
+      )}
+    </>
   );
 };
 

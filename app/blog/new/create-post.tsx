@@ -96,11 +96,11 @@ const CreatePost = () => {
   }, [postContent, postTitle, userProfile]);
 
   return (
-    <div className="max-w-[50rem] h-screen w-full mb-10 pt-10">
+    <div className="max-w-[50rem] h-screen w-full mt-32 sm:mt-5 mb-10 pt-10">
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
           <AlternateEmailOutlined sx={{ fontSize: "2.5rem" }} />
-          <h1 className="text-[2rem] font-medium !leading-[1] ">
+          <h1 className=" text-[1.5rem] sm:text-[2rem] font-medium !leading-[1] ">
             <span className="font-semibold uppercase">
               <span className="hero-gradient-text px-2">BRIGHT</span>blog
             </span>

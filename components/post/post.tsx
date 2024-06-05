@@ -5,6 +5,7 @@ import { defulatPfp } from "@/lib/data";
 import { estimateReadingTime, calculateElapsedTime } from "@/hooks/utils";
 import parse from "html-react-parser";
 import { Verified } from "@mui/icons-material";
+import { AiFillLike } from "react-icons/ai";
 
 const Post = ({ post, isSinglePost }: any) => {
   return (
@@ -41,14 +42,17 @@ const Post = ({ post, isSinglePost }: any) => {
             </h2>
           </div>
         </div>
-        <h1 className="text-black dark:text-white font-semibold text-[2rem] active:outline-none w-full outline-none bg-white dark:bg-black resize-none overflow-hidden !leading-[1.2]">
+        <div className="text-black dark:text-white font-semibold text-[2rem] w-full bg-white dark:bg-black !leading-[1.2]">
           {post.postTitle}
-        </h1>
-        <p className="text-black dark:text-white active:outline-none w-full text-[1rem] font-thin outline-none bg-white dark:bg-black resize-none overflow-hidden !leading-[1.5] mt-5">
+        </div>
+        <div className="text-black dark:text-white w-full text-[1rem] font-thin outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
           {isSinglePost
             ? parse(post.postContent)
             : parse(post.postContent.substring(0, 200).trim() + "...")}
-        </p>
+        </div>
+        <div>
+          <AiFillLike className="text-3xl" />
+        </div>
       </div>
     </Link>
   );
