@@ -64,7 +64,7 @@ const PriceCard = ({ card, index }: any) => {
 
   const buyButtonStyles = isExtended
     ? "bg-blue-600 text-white shadow-sm transition hover:bg-blue-500"
-    : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 transition";
+    : "text-black dark:text-white ring-1 ring-inset ring-black dark:ring-white hover:ring-blue-300 dark:hover:ring-blue-300  transition";
 
   const mostPopularBadge = isExtended ? (
     <p className="rounded-full bg-[#cecece] dark:bg-[#4e4e4f] px-2 py-2 text-sm font-semibold leading-5 text-black dark:text-white text-center sm:visible invisible">
