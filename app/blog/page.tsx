@@ -4,7 +4,7 @@ import Posts from "./posts";
 
 const page = () => {
   return (
-    <div>
+    <div className="pb-56">
       <Header />
       <Posts />
     </div>
