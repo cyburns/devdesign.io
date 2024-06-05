@@ -16,7 +16,7 @@ const Posts = () => {
         </div>
       ) : (
         <div className="max-w-[40rem]">
-          <div className="mt-1 sm:mt-10 w-full border-b-2 pb-2">
+          <div className="mt-1 sm:mt-10 w-full border-[#EFEFEF] dark:border-[#161616] border-b-2 pb-2">
             <h2 className="text-black dark:text-white text-xl font-medium p-3">
               Posts
             </h2>

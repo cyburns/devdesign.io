@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,21 +5,11 @@ import { defulatPfp } from "@/lib/data";
 import { estimateReadingTime, calculateElapsedTime } from "@/hooks/utils";
 import parse from "html-react-parser";
 import { Verified } from "@mui/icons-material";
-import { AiFillLike } from "react-icons/ai";
-import { AiOutlineLike } from "react-icons/ai";
-import useLikePost from "@/hooks/postHooks/useLikePost";
-import { getAuth } from "firebase/auth";
-import { LuMessageCircle } from "react-icons/lu";
-import { TbShare3 } from "react-icons/tb";
 import Buttons from "./buttons";
 
 const Post = ({ post, isSinglePost }: any) => {
-  const auth = getAuth();
-  const userId = auth.currentUser?.uid;
-  const { handleLikePost, isLiked } = useLikePost(post, userId);
-
   return (
-    <div className="mt-10 p-3 border-b-2">
+    <div className="mt-10 p-3 border-[#EFEFEF] dark:border-[#161616] border-b-2">
       <Link key={post.id} href={`/blog/${post.id}`}>
         <div className="flex flex-row items-center justify-between mb-7 w-full">
           <div className="flex flex-row">
@@ -55,7 +43,7 @@ const Post = ({ post, isSinglePost }: any) => {
           </div>
         </div>
         {isSinglePost && (
-          <div className="border-b-2 border-t-2 mb-5 p-1">
+          <div className="border-[#EFEFEF] dark:border-[#161616] border-b-2 border-t-2 mb-5 p-1">
             <Buttons post={post} />
           </div>
         )}
@@ -63,9 +51,11 @@ const Post = ({ post, isSinglePost }: any) => {
           {post.postTitle}
         </div>
         <div className="text-black dark:text-white w-full text-[1rem] font-thin outline-none bg-white dark:bg-black !leading-[1.5] mt-5">
-          {isSinglePost
-            ? parse(post.postContent)
-            : parse(post.postContent.substring(0, 200).trim() + "...")}
+          <span className="text-black dark:text-white ">
+            {isSinglePost
+              ? parse(post.postContent)
+              : parse(post.postContent.substring(0, 200).trim() + "...")}
+          </span>
         </div>
       </Link>
       {!isSinglePost && (

@@ -371,6 +371,5 @@ header {
 }
 
 .ql-editor {
-  color: #000000 !important;
   font-size: 1.5rem !important; /* Customize placeholder text color if needed */
 }

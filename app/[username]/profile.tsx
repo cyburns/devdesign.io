@@ -170,8 +170,18 @@ const Profile = () => {
               Posts
             </h2>
           </div>
-
-          <UserPosts usersPosts={usersPosts} />
+          {usersPosts.length > 0 ? (
+            <UserPosts usersPosts={usersPosts} />
+          ) : (
+            <div className="mt-5 w-full flex flex-col items-center justify-center">
+              <h1 className="text-black dark:text-white text-2xl font-medium">
+                No posts yet
+              </h1>
+              <h2 className="text-[#a5a5a6] text-lg font-medium mt-1">
+                When you create a post, it will appear here.
+              </h2>
+            </div>
+          )}
         </div>
       )}
     </>
