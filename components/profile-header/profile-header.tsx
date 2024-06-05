@@ -15,8 +15,6 @@ export default function ProfileHeader() {
   const auth = getAuth();
   const currentUser = auth.currentUser;
 
-  if (!currentUser) return null;
-
   const { isUserLoading, userProfile } = useGetUserById(
     currentUser?.uid
   ) as any;
@@ -26,6 +24,8 @@ export default function ProfileHeader() {
       setPath("/blog/new");
     }
   }, [currentUser, auth]);
+
+  if (!currentUser) return null;
 
   if (isUserLoading || !userProfile)
     return (
