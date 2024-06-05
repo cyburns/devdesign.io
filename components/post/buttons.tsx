@@ -21,6 +21,14 @@ const Buttons = ({ post }: any) => {
     handleLikePost();
   };
 
+  const handleShare = () => {
+    navigator.clipboard.writeText(
+      `https://brightdev.vercel.app/blog/${post.id}`
+    );
+
+    toast.success("Link copied to clipboard");
+  };
+
   return (
     <div className="flex items-center justify-around">
       <div
@@ -49,7 +57,10 @@ const Buttons = ({ post }: any) => {
           Comment
         </span>
       </div> */}
-      <div className="flex items-center hover:bg-[#EFEFEF] dark:hover:bg-[#161616] p-2 rounded-md w-full justify-center">
+      <div
+        onClick={handleShare}
+        className="flex items-center hover:bg-[#EFEFEF] dark:hover:bg-[#161616] p-2 rounded-md w-full justify-center"
+      >
         <TbShare3 className="text-2xl text-black dark:text-white ml-3" />
         <span className="text-lg text-black dark:text-white  ml-1 font-medium">
           Share
